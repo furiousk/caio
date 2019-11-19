@@ -1,0 +1,69 @@
+* {
+    text-rendering: optimizeLegibility;
+}
+
+
+/* Fontes */
+
+body {}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+h7 {}
+
+p {}
+
+a {}
+
+h1 span,
+h2 span,
+h3 span,
+h4 span,
+h5 span,
+h6 span,
+h7 span {}
+
+
+/* LINKS */
+
+a,
+a:focus {
+    text-decoration: none;
+    -webkit-transition: color 150ms ease-out;
+    -moz-transition: color 150ms ease-out;
+    -o-transition: color 150ms ease-out;
+    transition: color 150ms ease-out;
+}
+
+a:hover {
+    text-decoration: none;
+    cursor: pointer;
+}
+
+a:active {
+    text-decoration: none;
+}
+
+
+/* Extra small devices (portrait phones, less than 576px) */
+
+@media (max-width: 575px) {}
+
+
+/* Small devices (landscape phones, less than 768px) */
+
+@media (max-width: 767px) {}
+
+
+/* Medium devices (tablets, less than 992px) */
+
+@media (max-width: 991px) {}
+
+
+/* Large devices (desktops, less than 1200px) */
+
+@media (max-width: 1199px) {}

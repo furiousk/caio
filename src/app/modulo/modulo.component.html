@@ -1,0 +1,171 @@
+<div class="modulo">
+    <div class="content">
+
+        <div class="header" routerLink="/modulo">
+            <img src="assets/images/logo-its-cor.png" alt="ITS Service Intelligent Technology Solutions" >
+        </div>
+
+        <div class="barra-top"></div>
+
+        <div class="barra-top-menu">
+            <div class="row">
+                <div class="col-sm-6 cell1" routerLink="/modulo">
+                    <i class="fa fa-th fa-lg"></i>
+                </div>
+                <div class="col-sm-6 cell2" (click)="logoof()">
+                    <i class="fa fa-power-off fa-lg"></i>
+                </div>
+            </div>
+        </div>
+
+        <div class="barra-descript">
+            <div class="row">
+                <div class="col-sm-2">
+                    <i class="fa fa-th fa-lg"></i>
+                </div>
+                <div class="col-sm-10">
+                    {{ getTitle() }}
+                </div>
+            </div>
+        </div>
+
+        <div class="form-wrapper grade">
+
+            <div class="container-fluid">
+
+                <div class="row">
+
+                    <div class="col-xs-12 col-sm-4 graph">
+                        <a >
+                            <div class="card corner-top-left">
+                                <span class="aro">
+                                    <i class="fa fa-cog fa-3x"></i>
+                                </span>
+                                <span class="descript">Configurações</span>
+                            </div>
+                            <span class="lock">
+                                <i class="fa fa-lock"></i>
+                            </span>
+                        </a>
+                    </div>
+
+                    <div class="col-xs-12 col-sm-4 graph">
+                        <a href="#" routerLink="/maps">
+                            <div class="card" >
+                                <span class="aro">
+                                    <i class="fa fa-location-arrow fa-3x"></i>
+                                </span>
+                                <span class="descript">Rastreamento</span>
+                            </div>
+                            <!--span class="lock">
+                                <i class="fa fa-lock"></i>
+                            </span-->
+                        </a>
+                    </div>
+
+                    <div class="col-xs-12 col-sm-4 graph">
+                        <a href="#" routerLink="/rastreio">
+                            <div class="card corner-top-rigth">
+                                <span class="aro">
+                                    <i class="fa fa-calendar fa-3x"></i>
+                                </span>
+                                <span class="descript">Histórico</span>
+                            </div>
+                            <!--span class="lock">
+                                <i class="fa fa-lock"></i>
+                            </span-->
+                        </a>
+                    </div>
+
+                </div>
+
+                <!--div class="row">
+
+                    <div class="col-xs-12 col-sm-4 graph">
+                        <div class="card">
+                            <span class="aro">
+                                <i class="fa fa-bus fa-3x"></i>
+                            </span>
+                            <span class="descript">Veículos</span>
+                        </div>
+                        <span class="lock">
+                            <i class="fa fa-lock"></i>
+                        </span>
+                    </div>
+
+                    <div class="col-xs-12 col-sm-4 graph">
+                        <div class="card">
+                            <span class="aro">
+                                <i class="fa fa-bus fa-3x"></i>
+                            </span>
+                            <span class="descript">Veículos</span>
+                        </div>
+                        <span class="lock">
+                            <i class="fa fa-lock"></i>
+                        </span>
+                    </div>
+
+                    <div class="col-xs-12 col-sm-4 graph">
+                        <div class="card">
+                            <span class="aro">
+                                <i class="fa fa-bus fa-3x"></i>
+                            </span>
+                            <span class="descript">Veículos</span>
+                        </div>
+                        <span class="lock">
+                            <i class="fa fa-lock"></i>
+                        </span>
+                    </div>//buromobelexperte  <-icone de retorno
+
+                </div-->
+
+                <div class="row">
+
+                    <div class="col-xs-12 col-sm-4 graph">
+                        <a href="#" routerLink="/evento">
+                            <div class="card corner-bottom-left">
+                                <span class="aro">
+                                    <i class="fa fa-bell fa-3x"></i>
+                                </span>
+                                <span class="descript">Eventos</span>
+                            </div>
+                            <!--span class="lock">
+                                <i class="fa fa-lock"></i>
+                            </span-->
+                        </a>
+                    </div>
+
+                    <div class="col-xs-12 col-sm-4 graph">
+                        <a href="#" routerLink="/telemodule">
+                            <div class="card">
+                                <span class="aro">
+                                    <i class="fa fa-pie-chart fa-3x"></i>
+                                </span>
+                                <span class="descript">Telemetria</span>
+                            </div>
+                            <!--span class="lock">
+                                <i class="fa fa-lock"></i>
+                            </span-->
+                        </a>
+                    </div>
+
+                    <div class="col-xs-12 col-sm-4 graph">
+                        <a href="#" routerLink="/alocacao">
+                            <div class="card corner-bottom-rigth">
+                                <span class="aro">
+                                    <i class="fa fa-sitemap fa-3x"></i>
+                                </span>
+                                <span class="descript">Administração</span>
+                            </div>
+                            <!--span class="lock">
+                                <i class="fa fa-lock"></i>
+                            </span-->
+                        </a>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

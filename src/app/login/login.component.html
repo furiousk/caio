@@ -1,0 +1,31 @@
+<div class="login">
+    <div class="form">
+
+        <div class="header">
+            <img src="assets/images/logo-its-preto.png" alt="">
+        </div>
+
+        <div class="container-fluid login">
+
+            <div class="row">
+
+                <div class="col-xs-12 col-sm-12" class="moldura">
+
+                    <div class="login-titulo"> Faça o seu login </div>
+                    <form (ngSubmit)="login()" #form="ngForm" autocomplete="nope" >
+                        <div class="login-erro">
+                            {{ erro.login }}
+                        </div>
+                        <div class="form-group">
+                            <input name="email" [(ngModel)]="user.email" id="input-email" class="form-control" placeholder="E-mail">
+                            <input name="password" [(ngModel)]="user.password" type="password" id="input-password" class="form-control" placeholder="Senha">
+                            <button class="btn btn-block btn-hero-success" (click)="login">LOGAR</button>
+                        </div>
+                    </form>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

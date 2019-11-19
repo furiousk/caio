@@ -1,0 +1,129 @@
+<div class="operacao">
+    <div class="content">
+
+        <div class="header" routerLink="/modulo">
+            <img src="assets/images/logo-its-cor.png" alt="ITS Service Intelligent Technology Solutions" >
+        </div>
+
+        <div class="barra-top"></div>
+
+        <div class="barra-top-menu">
+            <div class="row">
+                <div class="col-sm-6 cell1" routerLink="/modulo">
+                    <i class="fa fa-th fa-lg"></i>
+                </div>
+                <div class="col-sm-6 cell2" (click)="logoof()">
+                    <i class="fa fa-power-off fa-lg"></i>
+                </div>
+            </div>
+        </div>
+
+        <div class="barra-descript">
+            <div class="row">
+                <div class="col-sm-2">
+                    <i class="fa fa-bell fa-lg"></i>
+                </div>
+                <div class="col-sm-10">
+                    {{ getTitle() }}
+                </div>
+            </div>
+        </div>
+
+        <div class="form-wrapper grade">
+
+            <div class="container-fluid">
+
+                <div class="row">
+
+                    <div class="col-xs-12 col-sm-4 graph">
+                        <a href="#" routerLink="/outroad">
+                            <div class="card corner-top-left">
+                                <span class="aro">
+                                    <i class="fa fa-external-link fa-3x"></i>
+                                </span>
+                                <span class="descript">Fuga de rota</span>
+                            </div>
+                            <!--span class="lock">
+                                <i class="fa fa-lock"></i>
+                            </span-->
+                        </a>
+                    </div>
+
+                    <div class="col-xs-12 col-sm-4 graph">
+                        <a href="#" routerLink="/pedagio">
+                            <div class="card ">
+                                <span class="aro">
+                                    <i class="fa fa-ticket fa-3x"></i>
+                                </span>
+                                <span class="descript">Pedágio</span>
+                            </div>
+                            <!--span class="lock">
+                                <i class="fa fa-lock"></i>
+                            </span-->
+                        </a>
+                    </div>
+
+                    <div class="col-xs-12 col-sm-4 graph">
+                        <a href="#" routerLink="/poi">
+                            <div class="card corner-top-rigth">
+                                <span class="aro">
+                                    <i class="fa fa-thumb-tack fa-3x"></i>
+                                </span>
+                                <span class="descript">POI</span>
+                            </div>
+                            <span class="lock">
+                                <i class="fa fa-lock"></i><!-- sticky-note-o -->
+                            </span>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="row">
+
+                    <div class="col-xs-12 col-sm-4 graph">
+                        <a >
+                            <div class="card corner-bottom-left">
+                                <span class="aro">
+                                    <i class="fa fa-frown-o fa-3x"></i>
+                                </span>
+                                <span class="descript">Vazio</span>
+                            </div>
+                            <span class="lock">
+                                <i class="fa fa-lock"></i><!-- sticky-note-o -->
+                            </span>
+                        </a>
+                    </div>
+
+                    <div class="col-xs-12 col-sm-4 graph">
+                        <a >
+                            <div class="card" >
+                                <span class="aro">
+                                    <i class="fa fa-frown-o fa-3x"></i>
+                                </span>
+                                <span class="descript">Vazio</span>
+                            </div>
+                            <span class="lock">
+                                <i class="fa fa-lock"></i>
+                            </span>
+                        </a>
+                    </div>
+
+                    <div class="col-xs-12 col-sm-4 graph">
+                        <a  >
+                            <div class="card corner-bottom-rigth">
+                                <span class="aro">
+                                    <i class="fa fa-frown-o fa-3x"></i>
+                                </span>
+                                <span class="descript">Vazio</span>
+                            </div>
+                            <span class="lock">
+                                <i class="fa fa-lock"></i>
+                            </span>
+                        </a>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

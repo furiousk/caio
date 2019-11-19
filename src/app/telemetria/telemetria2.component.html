@@ -1,0 +1,223 @@
+<header class="navbar navbar-light bg-light">
+
+    <div class="container-fluid">
+
+        <div class="col-sm-1">
+            <div class="btn" routerLink="/maps" title="Voltar">
+                <i class="fa fa-chevron-left"></i>
+            </div>
+        </div>
+
+        <!-- Título Página -->
+        <div class="col-sm-10">
+            <h1>Erros de Condução</h1>
+        </div>
+
+        <!-- Alertas -->
+        <div class="col-sm-1">
+            <img src="./assets/images/logo-its-preto.png" class="logo" alt="its geo logo" />
+        </div>
+
+    </div>
+
+</header>
+
+<div class="form-wrapper">
+
+
+    <div class="container-fluid">
+
+        <!--div class="card">
+            <div class="row">
+
+                <div class="col-xs-12 col-sm-12">
+                    <form class="form-inline parametro">
+                        <label class="col-xs-12">Parametrização</label>
+
+                        <div class="flex-column col-xs-12">
+                            <label>abaixo de:</label>
+                            <input type="number" class="form-control" id="">
+                        </div>
+
+                        <div class="flex-column col-xs-12">
+                            <label>entre:</label>
+                            <input type="number" class="form-control" id="" disabled>
+                        </div>
+
+                        <div class="flex-column col-xs-12">
+                            <label>acima de:</label>
+                            <input type="number" class="form-control" id="acimade">
+                        </div>
+
+                        <div class="flex-column col-xs-12">
+                            <button type="submit" class="btn btn-primary">Ajustar</button>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+        </div-->
+
+
+        <div class="card">
+            <div class="row">
+                <!-- Parametrização -->
+                <div class="col-xs-12 col-sm-7">
+
+                    <div class="form-inline periodo">
+
+                        <label class="col-xs-12">Período</label>
+                        <!-- Data Inicio -->
+                        <div class="flex-column col-xs-12">
+                            <input type="date" class="form-control" [(ngModel)]="telemetry.time_a">
+                        </div>
+
+                        <!-- Data Fim -->
+                        <div class="flex-column col-xs-12">
+                            <input type="date" class="form-control" [(ngModel)]="telemetry.time_b">
+                        </div>
+
+                        <!-- Confirmar -->
+                        <button class="btn btn-primary" (click)="gerar(telemetry)">Gerar Relatório</button>
+
+                    </div>
+
+                </div>
+
+                <div class="col-xs-12 col-sm-2">
+                    <label>Exportar para:</label>
+                    <button class="btn btn-success" (click)="exportToExcel()">
+                        <i class="fa fa-file-excel-o"></i>
+                    </button>
+                </div>
+
+                <!-- Busca -->
+                <div class="col-xs-12 col-sm-3 search">
+                    <div class="form-inline buscar float-right">
+                        <label>Filtrar por:</label>
+                        <input [(ngModel)]="searchText" class="form-control" type="search" placeholder="Motorista" aria-label="Buscar" >
+                        <button class="btn btn-primary" type="submit">Buscar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <table cellspacing="0" class="table table-bordered" style="width:100%">
+
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col" style="width:22%">Relatório por:</th>
+                    <th scope="col" style="width:13%" colspan="2">Velocidade Excessiva</th>
+                    <th scope="col" style="width:13%" colspan="2">Rotação Excessiva</th>
+                    <th scope="col" style="width:13%" colspan="2">Freada Brusca</th>
+                    <th scope="col" style="width:13%" colspan="2">Fora da Faixa Econômica</th>
+                    <th scope="col" style="width:13%" colspan="2">Marcha Lenta Excessiva</th>
+                    <th scope="col" style="width:13%" colspan="2">Arrancada Brusca</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr class="sub-row">
+
+                    <th scope="row" [class.active]="order === 'motorista'" (click)="setOrder('motorista')">Motorista
+
+                        <span [hidden]="reverse">▼</span>
+                        <span [hidden]="!reverse">▲</span>
+
+                    </th>
+
+                    <td [class.active]="order === '1.totaloccurs'" (click)="setOrder('1.totaloccurs')">Ocorrênc
+
+                        <span [hidden]="reverse">▼</span>
+                        <span [hidden]="!reverse">▲</span>
+
+                    </td>
+                    <td [class.active]="order === '1.totaltimeS'" (click)="setOrder('1.totaltimeS')">Tempo
+
+                        <span [hidden]="reverse">▼</span>
+                        <span [hidden]="!reverse">▲</span>
+
+                    </td>
+                    <td [class.active]="order === '2.totaloccurs'" (click)="setOrder('2.totaloccurs')">Ocorrênc
+
+                        <span [hidden]="reverse">▼</span>
+                        <span [hidden]="!reverse">▲</span>
+
+                    </td>
+                    <td [class.active]="order === '2.totaltimeS'" (click)="setOrder('2.totaltimeS')">Tempo
+
+                        <span [hidden]="reverse">▼</span>
+                        <span [hidden]="!reverse">▲</span>
+
+                    </td>
+                    <td [class.active]="order === '3.totaloccurs'" (click)="setOrder('3.totaloccurs')">Ocorrênc
+
+                        <span [hidden]="reverse">▼</span>
+                        <span [hidden]="!reverse">▲</span>
+
+                    </td>
+                    <td [class.active]="order === '3.totaltimeS'" (click)="setOrder('3.totaltimeS')">Tempo
+
+                        <span [hidden]="reverse">▼</span>
+                        <span [hidden]="!reverse">▲</span>
+
+                    </td>
+                    <td [class.active]="order === '4.totaloccurs'" (click)="setOrder('4.totaloccurs')">Ocorrênc
+
+                        <span [hidden]="reverse">▼</span>
+                        <span [hidden]="!reverse">▲</span>
+
+                    </td>
+                    <td [class.active]="order === '4.totaltimeS'" (click)="setOrder('4.totaltimeS')">Tempo
+
+                        <span [hidden]="reverse">▼</span>
+                        <span [hidden]="!reverse">▲</span>
+
+                    </td>
+                    <td [class.active]="order === '5.totaloccurs'" (click)="setOrder('5.totaloccurs')">Ocorrênc
+
+                        <span [hidden]="reverse">▼</span>
+                        <span [hidden]="!reverse">▲</span>
+
+                    </td>
+                    <td [class.active]="order === '5.totaltimeS'" (click)="setOrder('5.totaltimeS')">Tempo
+
+                        <span [hidden]="reverse">▼</span>
+                        <span [hidden]="!reverse">▲</span>
+
+                    </td>
+                    <td [class.active]="order === '7.totaloccurs'" (click)="setOrder('7.totaloccurs')">Ocorrênc
+
+                        <span [hidden]="reverse">▼</span>
+                        <span [hidden]="!reverse">▲</span>
+
+                    </td>
+                    <td [class.active]="order === '7.totaltimeS'" (click)="setOrder('7.totaltimeS')">Tempo
+
+                        <span [hidden]="reverse">▼</span>
+                        <span [hidden]="!reverse">▲</span>
+
+                    </td>
+                </tr>
+
+                <tr *ngFor="let item of (listB | orderBy: order: reverse: 'case-insensitive') | filterList:{ motorista: searchText }:false">
+                    <th scope="row">{{ item.motorista }}</th>
+                    <td>{{ item['1'].totaloccurs }}</td>
+                    <td>{{ item['1'].totaltime }}</td>
+                    <td>{{ item['2'].totaloccurs }}</td>
+                    <td>{{ item['2'].totaltime }}</td>
+                    <td>{{ item['3'].totaloccurs }}</td>
+                    <td>{{ item['3'].totaltime }}</td>
+                    <td>{{ item['4'].totaloccurs }}</td>
+                    <td>{{ item['4'].totaltime }}</td>
+                    <td>{{ item['5'].totaloccurs }}</td>
+                    <td>{{ item['5'].totaltime }}</td>
+                    <td>{{ item['7'].totaloccurs }}</td>
+                    <td>{{ item['7'].totaltime }}</td>
+                </tr>
+
+            </tbody>
+        </table>
+    </div>
+</div>
+<ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '14px' }"></ngx-loading>

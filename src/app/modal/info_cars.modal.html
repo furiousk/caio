@@ -1,0 +1,274 @@
+<div class="conteudo2" ngDraggable>
+
+    <div class="modal-header">
+        <h4 class="modal-title"> {{ html?.title }} </h4>
+        <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+
+    <div class="form-wrapper">
+
+        <div class="card">
+            <div class="row">
+
+                <div class="btn-group" role="group" aria-label="Basic example">
+                    <button type="button" class="btn btn-secondary" (click)="activeModal.close({id:html.carObj.mixID, type:'rastrear', timer:_time })"><i class="fa fa-location-arrow" ></i> Rastrear veículo</button>
+                    <button type="button" class="btn btn-secondary" [title]="(html?.carObj?.follow)?'Seguindo este veículo':'Seguir veículo'" (click)="activeModal.close({id:html.carObj.mixID,type:'seguir'})" [class.activedMove]="linked"><i class="fa fa-link" ></i> {{  (html?.carObj?.follow)?'Parar de seguir':'Seguir veículo' }}</button>
+
+                    <div class="field-timer">Tempo de rastreio <input type="text" [(ngModel)]="_time" limit-to="3"></div>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="modal-body">
+
+            <div class="card">
+
+                <div class="row grid-header">
+
+                    <div class="col-xs-12 col-sm-6">
+                        Dados da posição
+                    </div>
+
+                    <div class="col-xs-12 col-sm-6">
+                        Dados da alocação
+                    </div>
+
+                </div>
+
+                <div class="row">
+
+                    <div class="col-xs-12 col-sm-2">
+                        Velocidade:
+                    </div>
+
+                    <div class="col-xs-12 col-sm-4">
+                        {{ html?.velocidade||0 }} km/h
+                    </div>
+
+                    <div class="col-xs-12 col-sm-2">
+                        Motorista:
+                    </div>
+
+                    <div class="col-xs-12 col-sm-4">
+                        {{ html?.alocacao?.mac_motorista||'--' }} - {{ html?.alocacao?.nome_motorista||'--' }}
+                    </div>
+
+                </div>
+
+                <div class="row">
+
+                    <div class="col-xs-12 col-sm-2">
+                        Endereço:
+                    </div>
+
+                    <div class="col-xs-12 col-sm-4">
+                        {{ html?.road||'' }}
+                    </div>
+
+                    <div class="col-xs-12 col-sm-2">
+                        Turno/Situação:
+                    </div>
+
+                    <div class="col-xs-12 col-sm-4">
+                        {{ html?.alocacao?.turno||'--' }} / {{ html?.situacao||'Desalocado' }}
+                    </div>
+
+                </div>
+
+                <div class="row">
+
+                    <div class="col-xs-12 col-sm-2">
+                        Posição:
+                    </div>
+
+                    <div class="col-xs-12 col-sm-4">
+                        {{ html?.time||'--:--' }}
+                    </div>
+
+                    <div class="col-xs-12 col-sm-2">
+                        Linha:
+                    </div>
+
+                    <div class="col-xs-12 col-sm-4">
+                        {{ html?.line?.prefixo||'--' }} - {{ html?.line?.descricao||'--' }}
+                    </div>
+
+                </div>
+
+                <div class="row">
+
+                    <div class="col-xs-12 col-sm-2">
+                        Pegada:
+                    </div>
+
+                    <div class="col-xs-12 col-sm-4">
+                        {{ html?.alocacao?.pegada_motorista||'--:--' }}
+                    </div>
+
+                    <div class="col-xs-12 col-sm-2">
+                        Largada:
+                    </div>
+
+                    <div class="col-xs-12 col-sm-4">
+                        {{ html?.alocacao?.largada_motorista||'--:--' }}
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="card">
+
+                <div class="row grid-header">
+
+                    <div class="col-xs-12 col-sm-12">
+                        Dados da viagem
+                    </div>
+
+                </div>
+
+                <div class="row">
+
+                    <div class="col-xs-12 col-sm-2">
+                        Qtd Passageiros:
+                    </div>
+
+                    <div class="col-xs-12 col-sm-2">
+                        {{ html?.alocacao?.servico||'--' }}
+                    </div>
+
+                    <div class="col-xs-12 col-sm-2">
+                        Sentido:
+                    </div>
+
+                    <div class="col-xs-12 col-sm-2">
+                        {{ html?.lado||'--' }}
+                    </div>
+
+                    <div class="col-xs-12 col-sm-2">
+                        Status:
+                    </div>
+
+                    <div class="col-xs-12 col-sm-2">
+                        {{ html?.progress?.status||'--' }}
+                    </div>
+
+                </div>
+
+                <div class="row">
+
+                    <div class="col-xs-12 col-sm-2">
+                        Roteiro:
+                    </div>
+
+                    <div class="col-xs-12 col-sm-2">
+                        {{ html?.progress?.kmlinha||'--' }}
+                    </div>
+
+                    <div class="col-xs-12 col-sm-2">
+                        Roteiro Percorrido:
+                    </div>
+
+                    <div class="col-xs-12 col-sm-2">
+                        {{ html?.progress?.kmpercorrido||'--' }}
+                    </div>
+
+                    <div class="col-xs-12 col-sm-2">
+                        Progresso:
+                    </div>
+
+                    <div class="col-xs-12 col-sm-2">
+                        <ngb-progressbar showValue="true" [type]="checktype(html?.progress?.kmpercentual)" [value]="html?.progress?.kmpercentual"></ngb-progressbar>
+                    </div>
+
+                </div>
+
+                <!--div class="row">
+
+                    <div class="col-xs-12 col-sm-2">
+                        Tempo para conclusão:
+                    </div>
+
+                    <div class="col-xs-12 col-sm-4">
+                        {{ html?.progress?.time||'--' }}
+                    </div>
+
+                    <div class="col-xs-12 col-sm-2">
+                        Previsão de chegada:
+                    </div>
+
+                    <div class="col-xs-12 col-sm-4">
+                        {{ html?.progress?.previsao||'--' }}
+                    </div>
+
+                </div-->
+
+            </div>
+
+            <!--div class="card">
+
+                <div class="row grid-header">
+
+                    <div class="col-xs-12 col-sm-12">
+                        Performace da Operação
+                    </div>
+
+                </div>
+
+                <div class="row">
+
+                    <div class="col-xs-12 col-sm-2">
+                        Veículo próximo:
+                    </div>
+
+                    <div class="col-xs-12 col-sm-2">
+                        {{ html?.nearCar||'--' }}
+                    </div>
+
+                    <div class="col-xs-12 col-sm-2">
+                        Metros:
+                    </div>
+
+                    <div class="col-xs-12 col-sm-2">
+                        {{ html?.nearMet||'--' }}
+                    </div>
+
+                    <div class="col-xs-12 col-sm-2">
+                        Status:
+                    </div>
+
+                    <div class="col-xs-12 col-sm-2">
+
+                    </div>
+
+                </div>
+
+            </div-->
+
+        </div>
+        <div class="card">
+            <div class="row">
+
+                <div class="btn-group" role="group" aria-label="Basic example">
+
+                    <div class="field-timer" [hidden]="html?.alocacao?.situacao != 'E'">Sentido da viagem
+                        <select [(ngModel)]="_sentido">
+                            <option value="">sentido</option>
+                            <option value="IDA">IDA</option>
+                            <option value="VOLTA">VOLTA</option>
+                        </select>
+                    </div>
+                    <div class="field-timer hash" [hidden]="html?.alocacao?.situacao != 'E'">Hash
+                        <input type="text" [(ngModel)]="_hash" >
+                    </div>
+                    <button [hidden]="html?.alocacao?.situacao != 'E'" type="button" class="btn btn-secondary" (click)="activeModal.close({id:html.carObj.mixID, type:'opentrip', sentido:_sentido, hash:_hash })"><i class="fa fa-bus" ></i> Abrir viagem</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</div>

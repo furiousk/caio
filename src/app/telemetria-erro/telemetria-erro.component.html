@@ -1,0 +1,240 @@
+<div class="erros">
+
+    <div class="content">
+
+        <div class="header" routerLink="/modulo">
+            <img src="assets/images/logo-its-cor.png" alt="ITS Service Intelligent Technology Solutions" >
+        </div>
+
+        <div class="barra-top"></div>
+
+        <div class="barra-top-menu">
+            <div class="row">
+                <div class="col-sm-6 cell1" routerLink="/modulo">
+                    <i class="fa fa-th fa-lg"></i>
+                </div>
+                <div class="col-sm-6 cell2" (click)="logoof()">
+                    <i class="fa fa-power-off fa-lg"></i>
+                </div>
+            </div>
+        </div>
+
+        <div class="row menus">
+
+            <div class="col-sm-4 f-btn" routerLink="/telemetria-erro" [class.active]="site=='erros'">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <i class="fa fa-exclamation fa-lg"></i>
+                    </div>
+                    <div class="col-sm-12">
+                        Violações
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-4 f-btn" routerLink="/telemetria-ranking" [class.active]="site=='rank'">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <i class="fa fa-percent fa-lg"></i>
+                    </div>
+                    <div class="col-sm-12">
+                        Aproveitamento
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-4 f-btn" routerLink="/telemetria-grafico" [class.active]="site=='graficos'">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <i class="fa fa-line-chart fa-lg"></i>
+                    </div>
+                    <div class="col-sm-12">
+                        Indicadores
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="row rotulo">
+            <div class="col-sm-1 icone">
+                <i class="fa fa-calendar-check-o fa-lg"></i>
+            </div>
+            <div class="col-sm-11">
+                Violações de Condução
+            </div>
+        </div>
+
+        <div class="form-wrapper">
+            <div class="container-fluid">
+                <div class="fixed">
+                    <div class="row options">
+                        <!-- Parametrização -->
+                        <div class="col-xs-12 col-sm-6">
+                            <div class="form-inline periodo">
+                                <label class="col-xs-12">Período</label>
+                                <!-- Data Inicio -->
+                                <div class="flex-column col-xs-12">
+                                    <input type="date" class="form-control" [(ngModel)]="telemetry.time_a">
+                                </div>
+
+                                <!-- Data Fim -->
+                                <div class="flex-column col-xs-12">
+                                    <input type="date" class="form-control" [(ngModel)]="telemetry.time_b">
+                                </div>
+
+                                <!-- Confirmar -->
+                                <button class="btn btn-primary" (click)="gerar(telemetry)">Gerar Relatório</button>
+                            </div>
+                        </div>
+
+                        <div class="col-xs-12 col-sm-2">
+                            <label>Exportar para:</label>
+                            <button class="btn btn-primary" (click)="exportToExcel()">
+                                <i class="fa fa-file-excel-o"></i>
+                            </button>
+                        </div>
+
+                        <!-- Busca -->
+                        <div class="col-xs-12 col-sm-4 search">
+                            <div class="form-inline buscar float-right">
+                                <label>Filtrar por:</label>
+                                <input [(ngModel)]="searchText" class="form-control" type="search" placeholder="Motorista" aria-label="Buscar" >
+                                <!--button class="btn btn-primary" type="submit">Buscar</button-->
+                            </div>
+                        </div>
+                    </div>
+
+                    <table cellspacing="0" class="table table-bordered" style="width:100%">
+
+                        <thead class="headertable">
+                            <tr>
+                                <th scope="col" style="width:20%" colspan="2">Relatório por:</th>
+                                <th scope="col" style="width:13%" colspan="2">Velocidade Exc</th>
+                                <th scope="col" style="width:13%" colspan="2">Rotação Exc</th>
+                                <th scope="col" style="width:13%" colspan="2">Freada B.</th>
+                                <th scope="col" style="width:13%" colspan="2">Fora da Faixa E.</th>
+                                <th scope="col" style="width:13%" colspan="2">Marcha Lenta Exc</th>
+                                <th scope="col" style="width:13%" colspan="2">Arrancada B.</th>
+                            </tr>
+                        </thead>
+
+                        <thead class="headertablesub">
+                            <tr class="sub-row">
+
+                                <th [class.active]="order === 'matricula'" (click)="setOrder('matricula')">Matricula
+
+                                    <span [hidden]="reverse">▼</span>
+                                    <span [hidden]="!reverse">▲</span>
+
+                                </th>
+
+                                <th  width="200" [class.active]="order === 'motorista'" (click)="setOrder('motorista')">Motorista
+
+                                    <span [hidden]="reverse">▼</span>
+                                    <span [hidden]="!reverse">▲</span>
+
+                                </th>
+
+                                <td [class.active]="order === '1.totaloccurs'" (click)="setOrder('1.totaloccurs')">Ocorrênc
+
+                                    <span [hidden]="reverse">▼</span>
+                                    <span [hidden]="!reverse">▲</span>
+
+                                </td>
+                                <td [class.active]="order === '1.totaltimeS'" (click)="setOrder('1.totaltimeS')">Tempo
+
+                                    <span [hidden]="reverse">▼</span>
+                                    <span [hidden]="!reverse">▲</span>
+
+                                </td>
+                                <td [class.active]="order === '2.totaloccurs'" (click)="setOrder('2.totaloccurs')">Ocorrênc
+
+                                    <span [hidden]="reverse">▼</span>
+                                    <span [hidden]="!reverse">▲</span>
+
+                                </td>
+                                <td [class.active]="order === '2.totaltimeS'" (click)="setOrder('2.totaltimeS')">Tempo
+
+                                    <span [hidden]="reverse">▼</span>
+                                    <span [hidden]="!reverse">▲</span>
+
+                                </td>
+                                <td [class.active]="order === '3.totaloccurs'" (click)="setOrder('3.totaloccurs')">Ocorrênc
+
+                                    <span [hidden]="reverse">▼</span>
+                                    <span [hidden]="!reverse">▲</span>
+
+                                </td>
+                                <td [class.active]="order === '3.totaltimeS'" (click)="setOrder('3.totaltimeS')">Tempo
+
+                                    <span [hidden]="reverse">▼</span>
+                                    <span [hidden]="!reverse">▲</span>
+
+                                </td>
+                                <td [class.active]="order === '4.totaloccurs'" (click)="setOrder('4.totaloccurs')">Ocorrênc
+
+                                    <span [hidden]="reverse">▼</span>
+                                    <span [hidden]="!reverse">▲</span>
+
+                                </td>
+                                <td [class.active]="order === '4.totaltimeS'" (click)="setOrder('4.totaltimeS')">Tempo
+
+                                    <span [hidden]="reverse">▼</span>
+                                    <span [hidden]="!reverse">▲</span>
+
+                                </td>
+                                <td [class.active]="order === '5.totaloccurs'" (click)="setOrder('5.totaloccurs')">Ocorrênc
+
+                                    <span [hidden]="reverse">▼</span>
+                                    <span [hidden]="!reverse">▲</span>
+
+                                </td>
+                                <td [class.active]="order === '5.totaltimeS'" (click)="setOrder('5.totaltimeS')">Tempo
+
+                                    <span [hidden]="reverse">▼</span>
+                                    <span [hidden]="!reverse">▲</span>
+
+                                </td>
+                                <td [class.active]="order === '7.totaloccurs'" (click)="setOrder('7.totaloccurs')">Ocorrênc
+
+                                    <span [hidden]="reverse">▼</span>
+                                    <span [hidden]="!reverse">▲</span>
+
+                                </td>
+                                <td [class.active]="order === '7.totaltimeS'" (click)="setOrder('7.totaltimeS')">Tempo
+
+                                    <span [hidden]="reverse">▼</span>
+                                    <span [hidden]="!reverse">▲</span>
+
+                                </td>
+                            </tr>
+                        </thead>
+                    </table>
+                </div>
+
+                <table cellspacing="0" class="table table-bordered" style="width:100%">
+                    <tbody class="datalist">
+                        <tr *ngFor="let item of (listB | orderBy: order: reverse: 'case-insensitive') | filterList:{ motorista: searchText, matricula: searchText }:false let i = index" [ngClass]="{'lineLight': i%2==0, 'lineDark': i%2!==0 }">
+                            <th width="85" scope="row" class="linker" >{{ item.matricula }}</th>
+                            <td width="200">{{ item.motorista }}</td>
+                            <td width="93">{{ item['1'].occor }}</td>
+                            <td width="93">{{ item['1'].time }}</td>
+                            <td width="93">{{ item['2'].occor }}</td>
+                            <td width="93">{{ item['2'].time }}</td>
+                            <td width="93">{{ item['3'].occor }}</td>
+                            <td width="93">{{ item['3'].time }}</td>
+                            <td width="93">{{ item['4'].occor }}</td>
+                            <td width="93">{{ item['4'].time }}</td>
+                            <td width="93">{{ item['5'].occor }}</td>
+                            <td width="93">{{ item['5'].time }}</td>
+                            <td width="93">{{ item['7'].occor }}</td>
+                            <td width="93">{{ item['7'].time }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '14px' }"></ngx-loading>
+</div>

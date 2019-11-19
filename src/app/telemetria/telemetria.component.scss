@@ -1,0 +1,495 @@
+div.header{
+
+        background-color: #fff;//#f2842a;//#fff;//#f6f6f6;
+        width: 230px;
+        height: 200px;
+        position: fixed;
+        top: -145px;
+        left: 50%;
+        transform: translate(-50%);
+        z-index: 999;
+        border-radius: 7px;
+        box-shadow: 1px 1px 4px #f2842a;
+        cursor: pointer;
+    opacity: 0.7;
+    img{
+
+        position: absolute;
+        top: 150px;
+        left: 50%;
+        transform: translate(-50%);
+        width: 50%;
+    }
+    &:hover{
+
+        opacity: 1;
+    }
+}
+div.controle{
+
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    z-index: 999;
+    font-size: 25px;
+    opacity: 1;
+    max-width: 400px;
+}
+div.btn{
+
+    width: 50px;
+    background-color: #fff;
+    color: #2a2a2a;
+    box-shadow: 2px 2px 4px #000000;
+    padding: 10px;
+    margin-right: 15px;
+    text-align: center;
+    float: left;
+}
+div.content-sender{
+
+    position: absolute;
+    top: 7vw;
+    left: 5%;
+    width: 20%;
+    p{
+        text-align: center;
+        padding: 5px 5px;
+        font-size: 10px;
+        width: 90%;
+    }
+    .alert{
+        background-color: #f5db6e;
+    }
+    label{
+
+        width: 250px;
+        text-align: left;
+        display: block;
+        margin-bottom: 5px;
+    }
+    input{
+
+        width: 90%;
+        height: 30px;
+        margin-bottom: 10px;
+    }
+    button{
+
+        width: 90%;
+        height: 35px;
+        margin-bottom: 15px;
+    }
+}
+div.terminal{
+
+    position: absolute;
+    top: 7vw;
+    left: 35%;
+    width: 55%;
+
+    button{
+
+        position: absolute;
+        width: 100%;
+        height: 35px;
+        bottom: -10px;
+    }
+
+    div.content-terminal{
+
+        display: block;
+        overflow-x: auto;
+        width: 100%;
+        max-height: 600px;
+        background-color: #fff;
+        //padding: 2px;
+
+        p{
+            padding: 0;
+            margin: 0;
+        }
+
+        .text,.exit {
+          position: relative;
+          display: inline-block;
+          font-family: Monaco, Arial, Helvetica, sans-serif;
+          line-height: 24px;
+          font-size: 14px;
+          color: #3ef710;
+          //color: white;
+          min-width: 260px;
+        }
+
+        .text::after {
+          content: "";
+          position: absolute;
+          top: 0;
+          right: -15px;
+          display: inline-block;
+          background-color: #606060;
+          vertical-align: top;
+          width: 10px;
+          height: 24px;
+          -webkit-animation: blink 1s step-end infinite;
+          animation: blink 1s step-end infinite;
+        }
+
+        @-webkit-keyframes blink {
+          0% { opacity: 1.0; }
+          50% { opacity: 0.0; }
+          100% { opacity: 1.0; }
+        }
+
+        @keyframes blink {
+          0% { opacity: 1.0; }
+          50% { opacity: 0.0; }
+          100% { opacity: 1.0; }
+        }
+    }
+}
+
+/* =============ckeckbox style=========== */
+/* .roundedOne */
+$activeColor: #ad8427;
+$darkenColor: darken($activeColor, 20%);
+
+.roundedOne {
+  width: 28px;
+  height: 28px;
+  position: relative;
+  background: #fcfff4;
+  //background: linear-gradient(top, #fcfff4 0%, #e6e1d8 40%, #beb7ad 100%);
+  border-radius: 50px;
+  box-shadow: inset 0px 1px 1px white, 0px 1px 3px rgba(0,0,0,0.5);
+  label {
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+    position: absolute;
+    left: 4px;
+    top: 4px;
+    //background: linear-gradient(top, #222 0%, #45484d 100%);
+    border-radius: 50px;
+    box-shadow: inset 0px 1px 1px rgba(0,0,0,0.5), 0px 1px 0px rgba(255,255,255,1);
+    &:after {
+      content: '';
+      width: 16px;
+      height: 16px;
+      position: absolute;
+      top: 2px;
+      left: 2px;
+      background: $activeColor;
+      //background: linear-gradient(top, $activeColor 0%, $darkenColor 100%);
+      opacity: 0;
+      border-radius: 50px;
+      box-shadow: inset 0px 1px 1px white, 0px 1px 3px rgba(0,0,0,0.5);
+    }
+    &:hover::after {
+      opacity: 0.3;
+    }
+  }
+  input[type=checkbox] {
+    visibility: hidden;
+    &:checked + label:after {
+      opacity: 1;
+    }
+  }
+}
+
+
+$headerModal: #2a2a2a;
+/*==========modal==========*/
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 9999; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    -webkit-animation-name: fadeIn; /* Fade in the background */
+    -webkit-animation-duration: 0.4s;
+    animation-name: fadeIn;
+    animation-duration: 0.4s;
+}
+
+/* Modal Content */
+.modal-content {
+    position: fixed;
+    bottom: 0;
+    background-color: #fefefe;
+    width: 100%;
+    -webkit-animation-name: slideIn;
+    -webkit-animation-duration: 0.4s;
+    animation-name: slideIn;
+    animation-duration: 0.4s;
+    opacity: 0.7;
+    &:hover{
+        opacity: 1;
+    }
+
+}
+
+.modal-header {
+    padding: 2px 16px;
+    background-color: $headerModal;
+    color: white;
+    font-size: 9px!important;
+    font-weight: bold;
+    h2{
+        display: inline-flex;
+    }
+    .modal-control{
+
+        display: inline-flex;
+        float: right;
+        padding: 2px 5px;
+        width: 250px;
+
+        /* The Close Button */
+        input{
+
+            display: inline-block;
+            width: 80px;
+            height: 35px;
+            border-radius: 7px;
+            padding: 4px 15px;
+            font-size: 18px;
+
+        }
+        .btn2{
+
+            margin-left: 10px;
+            margin-right: 10px;
+            display: inline-block;
+            width: 35px;
+            height: 35px;
+            line-height: 32px;
+            border-radius: 50%;
+            background-color: #fff;
+            text-align: center;
+            font-size: 25px;
+            cursor: pointer;
+
+            i{
+                color: #000;
+            }
+        }
+    }
+}
+.modal-footer {
+    padding: 2px 16px;
+    background-color: $headerModal;
+    color: white;
+    font-size: 9px!important;
+    font-weight: bold;
+}
+
+/* Add Animation */
+@-webkit-keyframes slideIn {
+    from {bottom: -300px; opacity: 0}
+    to {bottom: 0; opacity: 1}
+}
+
+@keyframes slideIn {
+    from {bottom: -300px; opacity: 0}
+    to {bottom: 0; opacity: 1}
+}
+
+@-webkit-keyframes fadeIn {
+    from {opacity: 0}
+    to {opacity: 1}
+}
+
+@keyframes fadeIn {
+    from {opacity: 0}
+    to {opacity: 1}
+}
+.modal-body{
+
+    .sub-header{
+
+        font-size: 12px;
+        padding: 10px 16px;
+        width: 100%;
+        height: 35px;
+        border-top: 1px solid #000;
+        border-bottom: 1px solid #000;
+        background-color: #e6a75e;
+        color: #fff;
+        text-shadow: 2px 2px 4px #333;
+    }
+    .sub-body{
+
+        .row{
+
+            font-size: 10px;
+            display: flex;
+            width: 100%;
+            margin: 0!important;
+            padding: 0!important;
+
+            div{
+
+                margin: 0!important;
+                padding: 0px 16px;
+                display: inline-block;
+                border: 1px solid #ccc;
+                height: 30px;
+                line-height: 30px;
+            }
+        }
+    }
+}
+
+@keyframes animacao {
+   from {
+      //width: 100px;
+      background-color: #fff;
+   }
+   to {
+      background-color: #8310e8;
+   }
+}
+
+.activedMove{
+    animation: animacao 4s ease 1s infinite alternate;
+}
+
+div.table-header div.col{
+    cursor: pointer;
+    span {
+        visibility: hidden;
+    }
+
+    &.active {
+        color: #000;
+
+        span {
+            visibility: visible;
+        }
+    }
+}
+div.motorista{
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.table-header,.table-content{
+    display: block;
+    width: 100%;
+    margin-top: 15px;
+    div.col{
+        display: inline-block;
+        //width: 19%;
+        border-left: 1px solid #ccc;
+        border-bottom: 1px solid #ccc;
+    }
+}
+.sub-table-header,.sub-table-content{
+    display: block;
+    //width: 100%;
+    font-weight: bold;
+    font-size: 12px;
+    margin-left: 20px;
+    div.col{
+        display: inline-block;
+        //width: 19%;
+        border-left: 1px solid #ccc;
+        border-bottom: 1px solid #ccc;
+    }
+}
+.table-content{
+    div.colA{
+        background-color: #9d740c;
+        color: #fff;
+        text-align: center;
+    }
+}
+.sub-table-header{
+    margin-top: 15px;
+    div.col{
+        background-color: #000;
+        color: #fff;
+    }
+}
+
+.container-filter-events{
+    margin-top: 10px;
+    margin-bottom: 10px;
+    label{
+        width: 100%!important;
+        input{
+            outline: none;
+            position: relative;
+            width: 20px;
+            height: 20px;
+            top: 5px;
+        }
+    }
+}
+/*
+.option-input {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    -ms-appearance: none;
+    -o-appearance: none;
+    appearance: none;
+    position: relative;
+    top: 13.33333px;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    height: 40px;
+    width: 40px;
+    transition: all 0.15s ease-out 0s;
+    //background: #cbd1d8;
+    background: #d7d2cb;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    display: inline-block;
+    margin-right: 0.5rem;
+    outline: none;
+    position: relative;
+    z-index: 1000;
+}
+.option-input:hover {
+    //background: #9faab7;
+    background: #b8a9a0;
+}
+.option-input:checked {
+    //background: #40e0d0;
+    background: #e09740;
+}
+.option-input:checked::before {
+    height: 40px;
+    width: 40px;
+    position: absolute;
+    content: '✔';
+    display: inline-block;
+    font-size: 26.66667px;
+    text-align: center;
+    line-height: 40px;
+}
+.option-input:checked::after {
+    -webkit-animation: click-wave 0.65s;
+    -moz-animation: click-wave 0.65s;
+    animation: click-wave 0.65s;
+    //background: #40e0d0;
+    background: #e09740;
+    content: '';
+    display: block;
+    position: relative;
+    z-index: 100;
+}
+.option-input.radio {
+    border-radius: 50%;
+}
+.option-input.radio::after {
+    border-radius: 50%;
+}*/

@@ -1,0 +1,99 @@
+<div class="conteudo2">
+
+    <div class="modal-header">
+        <h4 class="modal-title">Cerca eletrônica</h4>
+        <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+
+    <div class="form-wrapper">
+
+        <div class="card">
+            <div class="row">
+                <div class="btn-group" role="group" aria-label="Basic example">
+                    <div class="field-timer"> crie uma nova geofence </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal-body">
+
+            <div class="row">
+                <div class="col-sm-6">
+                    <label> Nome </label>
+                    <input class="form-control d-block" type="text" [(ngModel)]="cerca.nome">
+                </div>
+                <div class="col-sm-6">
+                    <label> Descrição </label>
+                    <input class="form-control d-block" type="text" [(ngModel)]="cerca.descricao">
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-6">
+                    <label> Tipo </label>
+                    <select class="custom-select" [(ngModel)]="cerca.tipo">
+
+                        <option value="LINHA">Linha</option>
+                        <option value="TERMINAL">Terminal</option>
+                        <option value="POP">Ponto de passageiro</option>
+                        <option value="POI">Ponto de interesse</option>
+                        <option value="GARAGEM">Garagem</option>
+                        <option value="PEDAGIO">Pedágio</option>
+                        <option value="CONTROLE">Controle</option>
+                        <option value="AREA">Área</option>
+                        <option value="TROCALINHA">Mudança de linha</option>
+
+                    </select>
+                </div>
+                <div class="col-sm-6">
+                    <label> Velocidade </label>
+                    <input class="form-control d-block" type="text" [(ngModel)]="cerca.velocidade">
+                </div>
+            </div>
+
+            <div class="row" [hidden]="cerca.tipo!=='TROCALINHA'">
+                <div class="col-sm-6" >
+                    <label> De linha </label>
+                    <select class="custom-select" [(ngModel)]="cerca.delinha">
+                        <option selected>--selecione--</option>
+                        <option *ngFor="let o of list" value="{{ o._id }}">{{ o.descricao }}</option>
+                    </select>
+                </div>
+
+                <div class="col-sm-6" >
+                    <label> Para linha </label>
+                    <select class="custom-select" [(ngModel)]="cerca.paralinha">
+                        <option selected>--selecione--</option>
+                        <option *ngFor="let o of list" value="{{ o._id }}">{{ o.descricao }}</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="row" >
+                <div class="col-sm-6" [hidden]="cerca.tipo!=='POP'">
+                    <label> Linha </label>
+                    <select class="custom-select" [(ngModel)]="cerca.linha">
+                        <option selected>--selecione--</option>
+                        <option *ngFor="let o of list" value="{{ o._id }}">{{ o.descricao }}</option>
+                    </select>
+                </div>
+                <div class="col-sm-6" [hidden]="cerca.tipo!=='TROCALINHA' && cerca.tipo!=='POP'">
+                    <label> Sentido </label>
+                    <select class="custom-select" [(ngModel)]="cerca.sentido">
+                        <option selected>--selecione--</option>
+                        <option value="IDA">IDA</option>
+                        <option value="VOLTA">VOLTA</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="row semana"></div>
+        </div>
+    </div>
+
+    <div class="modal-footer">
+        <button type="button" class="btn btn-outline-dark" (click)="open(cerca)"> Executar </button>
+    </div>
+</div>

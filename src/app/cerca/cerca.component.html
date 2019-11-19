@@ -1,0 +1,65 @@
+<div class="cerca">
+
+    <div class="content">
+
+        <div class="header" routerLink="/modulo">
+            <img src="assets/images/logo-its-cor.png" alt="ITS Service Intelligent Technology Solutions" >
+        </div>
+
+        <div class="barra-top"></div>
+
+        <div class="barra-top-menu">
+            <div class="row">
+                <div class="col-sm-6 cell1" routerLink="/modulo">
+                    <i class="fa fa-th fa-lg"></i>
+                </div>
+                <div class="col-sm-6 cell2" (click)="logoof()">
+                    <i class="fa fa-power-off fa-lg"></i>
+                </div>
+            </div>
+        </div>
+
+        <div class="barra-top-main-menu">
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 cell2" (click)="open('lopen')" [class.actived]="lopen">
+                    <i class="fa fa-map-marker fa-lg"></i>
+                </div>
+            </div>
+        </div>
+
+        <div class="main-line" [style.width.px]="lopen">
+
+            <div class="topo">
+                <label>GEOFENCES</label>
+            </div>
+
+            <div class="content-line" [hidden]="vopen">
+                <div class="search-content">
+                    <div class="vgrid" >
+                        <div class="litem" *ngFor="let litem of cercas" [class.actived]="wopen[litem.id]">
+                            <i class="fa fa-map-marker"></i>
+                            <p (click)="openView(litem)">{{ litem.tipo }} => {{ maxLength(litem.nome, 25) }}</p>
+                            <div class="control" >
+                                <div class="container">
+                                    <div class="row">
+                                        <div class="col-sm-12 btn-menu" title="Selecionar">
+                                            <div class="form-check form-check-inline" >
+                                                <input class="form-check-input" type="checkbox" id="cerca{{ litem.id }}" (change)="check( $event, litem.id )" >
+                                                <label class="form-check-label" for="cerca{{ litem.id }}"> selecionar </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div id="map"></div>
+
+    </div>
+
+</div>

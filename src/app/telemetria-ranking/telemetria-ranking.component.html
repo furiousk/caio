@@ -1,0 +1,300 @@
+<div class="rank">
+
+    <div class="content">
+
+        <div class="header" routerLink="/modulo">
+            <img src="assets/images/logo-its-cor.png" alt="ITS Service Intelligent Technology Solutions" >
+        </div>
+
+        <div class="barra-top"></div>
+
+        <div class="barra-top-menu">
+            <div class="row">
+                <div class="col-sm-6 cell1" routerLink="/modulo">
+                    <i class="fa fa-th fa-lg"></i>
+                </div>
+                <div class="col-sm-6 cell2" (click)="logoof()">
+                    <i class="fa fa-power-off fa-lg"></i>
+                </div>
+            </div>
+        </div>
+
+        <div class="barra-top-main-menu">
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 cell2" (click)="open('vopen')" [class.actived]="vopen">
+                    <i class="fa fa-adjust fa-lg"></i>
+                </div>
+            </div>
+        </div>
+
+        <div class="main-vehicle" [style.width.px]="vopen">
+
+            <div class="topo">
+                <label>PARÂMETROS</label>
+            </div>
+
+            <div class="title">
+                selecione os parâmetros desejados
+            </div>
+
+            <div class="container">
+                <div class="row parametro">
+                    <div class="flex-column col-xs-12 col-sm-4">
+                        <label>abaixo de:</label>
+                        <input type="number" class="form-control" [(ngModel)]="param.abaixoD">
+                    </div>
+                    <div class="flex-column col-xs-12 col-sm-4">
+                        <label>entre:</label>
+                        <input type="text" class="form-control" [(ngModel)]="param.entreD" readonly>
+                    </div>
+                    <div class="flex-column col-xs-12 col-sm-4">
+                        <label>acima de:</label>
+                        <input type="number" class="form-control" [(ngModel)]="param.acimaD">
+                    </div>
+                </div>
+            </div>
+
+            <div class="title">
+                selecione os pesos desejados
+            </div>
+
+            <div class="container peso">
+
+                <div class="row">
+                    <div class="flex-column col-xs-12 col-sm-8">
+                        <label>velocidade excessiva:</label>
+                        <input type="range" class="form-control-range" [(ngModel)]="param.pEv1" min="0.1" max="5" step="0.1">
+                    </div>
+                    <div class="flex-column col-xs-12 col-sm-4 text-label">
+                         Peso: {{ param.pEv1 }}
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="flex-column col-xs-12 col-sm-8">
+                        <label>rotação excessiva:</label>
+                        <input type="range" class="form-control-range" id="formControlRange" [(ngModel)]="param.pEv2" min="0.1" max="15" step="0.1">
+                    </div>
+                    <div class="flex-column col-xs-12 col-sm-4 text-label">
+                        Peso: {{ param.pEv2 }}
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="flex-column col-xs-12 col-sm-8">
+                        <label>freada brusca:</label>
+                        <input type="range" class="form-control-range" id="formControlRange" [(ngModel)]="param.pEv3" min="0.1" max="15" step="0.1">
+                    </div>
+                    <div class="flex-column col-xs-12 col-sm-4 text-label">
+                        Peso: {{ param.pEv3 }}
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="flex-column col-xs-12 col-sm-8">
+                        <label>fora da faixa econômica:</label>
+                        <input type="range" class="form-control-range" id="formControlRange" [(ngModel)]="param.pEv4" min="0.1" max="1" step="0.01">
+                    </div>
+                    <div class="flex-column col-xs-12 col-sm-4 text-label">
+                        Peso: {{ param.pEv4 }}
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="flex-column col-xs-12 col-sm-8">
+                        <label>marcha lenta excessiva:</label>
+                        <input type="range" class="form-control-range" id="formControlRange" [(ngModel)]="param.pEv5" min="0.1" max="20" step="0.01">
+                    </div>
+                    <div class="flex-column col-xs-12 col-sm-4 text-label">
+                        Peso: {{ param.pEv5 }}
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="flex-column col-xs-12 col-sm-8">
+                        <label>arrancada brusca:</label>
+                        <input type="range" class="form-control-range" id="formControlRange" [(ngModel)]="param.pEv7" min="0.1" max="20" step="0.01">
+                    </div>
+                    <div class="flex-column col-xs-12 col-sm-4 text-label">
+                        Peso: {{ param.pEv7 }}
+                    </div>
+                </div>
+                <div class="row space"></div>
+            </div>
+            <div class="footer" (click)="ajustar(param)">
+                confirmar
+            </div>
+        </div>
+
+        <div class="row menus">
+
+            <div class="col-sm-4 f-btn" routerLink="/telemetria-erro" [class.active]="site=='erros'">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <i class="fa fa-exclamation fa-lg"></i>
+                    </div>
+                    <div class="col-sm-12">
+                        Violações
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-4 f-btn" routerLink="/telemetria-ranking" [class.active]="site=='rank'">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <i class="fa fa-percent fa-lg"></i>
+                    </div>
+                    <div class="col-sm-12">
+                        Aproveitamento
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-4 f-btn" routerLink="/telemetria-grafico" [class.active]="site=='graficos'">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <i class="fa fa-line-chart fa-lg"></i>
+                    </div>
+                    <div class="col-sm-12">
+                        Indicadores
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="row rotulo">
+            <div class="col-sm-1 icone">
+                <i class="fa fa-calendar-check-o fa-lg"></i>
+            </div>
+            <div class="col-sm-11">
+                Relatório de Aproveitamento
+            </div>
+        </div>
+
+        <div class="form-wrapper">
+
+            <div class="container-fluid">
+
+                <div class="fixed">
+                    <div class="row options">
+                        <!-- Parametrização -->
+                        <div class="col-xs-12 col-sm-6">
+
+                            <div class="form-inline periodo">
+
+                                <label class="col-xs-12">Período</label>
+                                <!-- Data Inicio -->
+                                <div class="flex-column col-xs-12">
+                                    <input type="date" class="form-control" [(ngModel)]="telemetry.time_a">
+                                </div>
+
+                                <!-- Data Fim -->
+                                <div class="flex-column col-xs-12">
+                                    <input type="date" class="form-control" [(ngModel)]="telemetry.time_b">
+                                </div>
+
+                                <!-- Confirmar -->
+                                <button class="btn btn-primary" (click)="gerar(telemetry)">Gerar Relatório</button>
+
+                            </div>
+
+                        </div>
+
+                        <div class="col-xs-12 col-sm-2">
+
+                            <label>Exportar para:</label>
+
+                            <button class="btn btn-primary" (click)="exportToExcel()">
+                                <i class="fa fa-file-excel-o"></i>
+                            </button>
+
+                            <button class="btn btn-primary" (click)="exportToText()">
+                                <i class="fa fa-file-text"></i>
+                            </button>
+
+                        </div>
+
+                        <!-- Busca -->
+                        <div class="col-xs-12 col-sm-4 search">
+                            <div class="form-inline buscar float-right">
+                                <label>Filtrar por:</label>
+                                <input [(ngModel)]="searchText" class="form-control" type="search" placeholder="Motorista" aria-label="Buscar" >
+                                <!--button class="btn btn-primary" type="submit">Buscar</button-->
+                            </div>
+                        </div>
+                    </div>
+
+                    <table cellspacing="0" class="table table-bordered" style="width:100%">
+                        <thead class="headertable">
+                            <tr>
+                                <th width="60" scope="col" [class.active]="order === 'matricula'" (click)="setOrder('matricula')">Matricula
+                                    <span [hidden]="reverse">▼</span>
+                                    <span [hidden]="!reverse">▲</span>
+                                </th>
+                                <th width="120" scope="col" [class.active]="order === 'motorista'" (click)="setOrder('motorista')">Motorista
+                                    <span [hidden]="reverse">▼</span>
+                                    <span [hidden]="!reverse">▲</span>
+                                </th>
+                                <th width="85" scope="col" [class.active]="order === 'jornadaB'" (click)="setOrder('jornadaB')">Jornada
+                                    <span [hidden]="reverse">▼</span>
+                                    <span [hidden]="!reverse">▲</span>
+                                </th>
+                                <th width="85" scope="col" [class.active]="order === '1.erros'" (click)="setOrder('1.erros')">Velocidade Ex
+                                    <span [hidden]="reverse">▼</span>
+                                    <span [hidden]="!reverse">▲</span>
+                                </th>
+                                <th width="85" scope="col" [class.active]="order === '2.erros'" (click)="setOrder('2.erros')">Rotação Ex
+                                    <span [hidden]="reverse">▼</span>
+                                    <span [hidden]="!reverse">▲</span>
+                                </th>
+                                <th width="85" scope="col" [class.active]="order === '3.erros'" (click)="setOrder('3.erros')">Freada B.
+                                    <span [hidden]="reverse">▼</span>
+                                    <span [hidden]="!reverse">▲</span>
+                                </th>
+                                <th width="85" scope="col" [class.active]="order === '4.erros'" (click)="setOrder('4.erros')">Fora da Faixa
+                                    <span [hidden]="reverse">▼</span>
+                                    <span [hidden]="!reverse">▲</span>
+                                </th>
+                                <th width="85" scope="col" [class.active]="order === '5.erros'" (click)="setOrder('5.erros')">Marcha Lenta
+                                    <span [hidden]="reverse">▼</span>
+                                    <span [hidden]="!reverse">▲</span>
+                                </th>
+                                <th width="85" scope="col" [class.active]="order === '7.erros'" (click)="setOrder('7.erros')">Arrancada B.
+                                    <span [hidden]="reverse">▼</span>
+                                    <span [hidden]="!reverse">▲</span>
+                                </th>
+                                <th width="85" scope="col" [class.active]="order === 'total'" (click)="setOrder('total')">Geral
+                                    <span [hidden]="reverse">▼</span>
+                                    <span [hidden]="!reverse">▲</span>
+                                </th>
+                            </tr>
+                        </thead>
+                    </table>
+                </div>
+
+                <table cellspacing="0" class="table table-bordered" style="width:100%">
+
+                    <tbody class="datalist">
+
+                        <tr *ngFor="let item of (listB | orderBy: order: reverse: 'case-insensitive') | filterList:{ motorista: searchText, matricula: searchText }:false let i = index" [ngClass]="{'lineLight': i%2==0, 'lineDark': i%2!==0 }">
+                            <th width="60" scope="row" class="linker" >{{ item.matricula }}</th>
+                            <td width="120">{{ item.motorista }}</td>
+                            <td width="85">{{ item.jornada }}</td>
+                            <td width="85" container="body" ngbTooltip="{{ item['1'].occor }} - {{ item['1'].time }}">{{ item['1'].erros }}</td>
+                            <td width="85" container="body" ngbTooltip="{{ item['2'].occor }} - {{ item['2'].time }}">{{ item['2'].erros }}</td>
+                            <td width="85" container="body" ngbTooltip="{{ item['3'].occor }} - {{ item['3'].time }}">{{ item['3'].erros }}</td>
+                            <td width="85" container="body" ngbTooltip="{{ item['4'].occor }} - {{ item['4'].time }}">{{ item['4'].erros }}</td>
+                            <td width="85" container="body" ngbTooltip="{{ item['5'].occor }} - {{ item['5'].time }}">{{ item['5'].erros }}</td>
+                            <td width="85" container="body" ngbTooltip="{{ item['7'].occor }} - {{ item['7'].time }}">{{ item['7'].erros }}</td>
+                            <td width="85" container="body" [ngClass]="{'green': item.total >= param.acimaD, 'red': item.total <= param.abaixoD, 'ambar': item.total > param.abaixoD && item.total < param.acimaD }">{{ item.total }}</td>
+                        </tr>
+
+                    </tbody>
+
+                </table>
+            </div>
+        </div>
+    </div>
+    <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '14px' }"></ngx-loading>
+</div>

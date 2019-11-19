@@ -1,0 +1,175 @@
+<div class="pedagio">
+
+    <div class="content">
+
+        <div class="header" routerLink="/modulo">
+            <img src="assets/images/logo-its-cor.png" alt="ITS Service Intelligent Technology Solutions" >
+        </div>
+
+        <div class="barra-top"></div>
+
+        <div class="barra-top-menu">
+            <div class="row">
+                <div class="col-sm-6 cell1" routerLink="/modulo">
+                    <i class="fa fa-th fa-lg"></i>
+                </div>
+                <div class="col-sm-6 cell2" (click)="logoof()">
+                    <i class="fa fa-power-off fa-lg"></i>
+                </div>
+            </div>
+        </div>
+
+        <div class="row menus">
+
+            <div class="col-sm-4 f-btn" routerLink="/outroad" [class.active]="site=='rota'">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <i class="fa fa-exclamation fa-lg"></i>
+                    </div>
+                    <div class="col-sm-12">
+                        Fuga de rota
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-4 f-btn" routerLink="/pedagio" [class.active]="site=='pedagio'">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <i class="fa fa-ticket fa-lg"></i>
+                    </div>
+                    <div class="col-sm-12">
+                        Pedágio
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-4 f-btn" routerLink="/poi" [class.active]="site=='poi'">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <i class="fa fa-thumb-tack fa-lg"></i>
+                    </div>
+                    <div class="col-sm-12">
+                        POI
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="row rotulo">
+            <div class="col-sm-1 icone">
+                <i class="fa fa-ticket fa-lg"></i>
+            </div>
+            <div class="col-sm-11">
+                Pedágio
+            </div>
+        </div>
+
+        <div class="form-wrapper">
+            <div class="container-fluid">
+                <div class="fixed">
+                    <div class="row options">
+                        <!-- Parametrização -->
+                        <div class="col-xs-12 col-sm-4">
+                            <div class="form-inline">
+                                <label>Locais:</label>
+                                <select class="form-control locais" [(ngModel)]="ifilter.pedagio">
+                                    <option value="">--selecione--</option>
+                                    <option value="{{ i._id }}" *ngFor="let i of listPedagio"> {{ i.nome }} </option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="col-xs-12 col-sm-5">
+                            <div class="form-inline periodo">
+                                <label class="col-xs-12">Período</label>
+                                <!-- Data Inicio -->
+                                <div class="flex-column col-xs-12">
+                                    <input type="date" class="form-control" [(ngModel)]="ifilter.time_a">
+                                </div>
+
+                                <!-- Data Fim -->
+                                <div class="flex-column col-xs-12">
+                                    <input type="date" class="form-control" [(ngModel)]="ifilter.time_b">
+                                </div>
+
+                                <!-- Confirmar -->
+                                <button class="btn btn-primary" (click)="gerar(ifilter)">Gerar Relatório</button>
+                            </div>
+                        </div>
+
+                        <div class="col-xs-12 col-sm-3">
+                            <label>Exportar para:</label>
+                            <button class="btn btn-primary" (click)="exportToExcel()">
+                                <i class="fa fa-file-excel-o"></i>
+                            </button>
+                        </div>
+
+                        <!-- Busca -->
+                        <!--div class="col-xs-12 col-sm-4 search">
+                            <div class="form-inline buscar float-right">
+                                <label>Filtrar por:</label>
+                                <input [(ngModel)]="searchText" class="form-control" type="search" placeholder="Veículo" aria-label="Buscar" >
+                            </div>
+                        </div-->
+                    </div>
+
+                </div>
+
+                <table class="table table-bordered">
+
+                    <div *ngFor="let iten of list|keys">
+
+                        <p class="_title"> {{ list[ iten ].name }} | Total: {{ sunKeys( iten )||0 }} passagens </p>
+
+                        <thead>
+
+                            <tr class="sub-row">
+
+                                <td width="390">Veículo
+
+                                    <span [hidden]="reverse">▼</span>
+                                    <span [hidden]="!reverse">▲</span>
+
+                                </td>
+                                <td width="250">Data
+
+                                    <span [hidden]="reverse">▼</span>
+                                    <span [hidden]="!reverse">▲</span>
+
+                                </td>
+                                <td width="150">Qntd
+
+                                    <span [hidden]="reverse">▼</span>
+                                    <span [hidden]="!reverse">▲</span>
+
+                                </td>
+
+                            </tr>
+
+                        </thead>
+
+                        <tbody class="_ilist">
+
+                            <tr [hidden]="item=='name'" *ngFor="let item of list[ iten ] | keys" [ngClass]="{'lineLight': i%2==0, 'lineDark': i%2!==0 }">
+
+                                <td>{{ list[ iten ][ item ][0]?.placa }}</td>
+                                <td>{{ list[ iten ][ item ][0]?.datetime }}</td>
+                                <td>{{ list[ iten ][ item ].length }}</td>
+
+                            </tr>
+
+                        </tbody>
+
+                    </div>
+                    <div class="footer">
+                        versão beta
+                    </div>
+
+                </table>
+
+            </div>
+        </div>
+    </div>
+    <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '14px' }"></ngx-loading>
+</div>

@@ -1,0 +1,138 @@
+<div class="content">
+
+    <div class="header">
+        <img src="assets/images/horroroso.jpeg" alt="">
+        <p>dados de telemetria</p>
+    </div>
+
+    <div class="controle">
+        <div class="btn" routerLink="/maps" title="Voltar">
+            <i class="fa fa-chevron-left"></i>
+        </div>
+    </div>
+
+    <div class="content-sender">
+
+         <h4>Pesquisar</h4>
+
+         <label for="inicio">início:</label>
+         <input id="inicio" type="text" name="" [(ngModel)]="telemetry.time_a" [textMask]="{mask: mask}">
+         <label for="fim">fim:</label>
+         <input id="fim" type="text" name="" [(ngModel)]="telemetry.time_b" [textMask]="{mask: mask}">
+
+         <div class="container-filter-events">
+
+             <label>
+                 <input type="checkbox" name="evnt[]" [(ngModel)]="telemetry.exvel"/>Excesso de Velocidade
+             </label>
+
+             <label>
+                 <input type="checkbox" name="evnt[]" [(ngModel)]="telemetry.exrot"/>Rotação Excessiva
+             </label>
+
+             <label>
+                 <input type="checkbox" name="evnt[]" [(ngModel)]="telemetry.fread"/>Freada Acentuada
+             </label>
+
+             <label>
+                 <input type="checkbox" name="evnt[]" [(ngModel)]="telemetry.faixa"/>Fora da Faixa Econômica
+             </label>
+
+             <label>
+                 <input type="checkbox" name="evnt[]" [(ngModel)]="telemetry.exlent"/>Marcha Lenta Excessiva
+             </label>
+
+             <label>
+                 <input type="checkbox" name="evnt[]" [(ngModel)]="telemetry.acel"/>Aceleração Brusca
+             </label>
+
+         </div>
+
+         <button type="button" name="button" (click)="gerar( telemetry )"> Gerar Relatório </button>
+
+         <h4>Filtros</h4>
+
+         <label for="veiculo">filtro:</label>
+         <input id="veiculo" type="text" name="" [(ngModel)]="searchText" placeholder="filtro por motorista ou veículo">
+
+         <h4>Exportar</h4>
+         <button type="button" name="button" (click)="exportToExcel()" >Excel</button>
+
+
+         <!--h4>Atenção</h4-->
+
+         <!--p class="alert">* Os dados de telemetria, foram fundidos aos de alocações apartir de 20/02/2018. Dados anteriores ao mesmo não serão processados.</p-->
+         <!--p class="alert">* A data "início" sempre receberá como hora 00:00:00 e a "fim" 23:59:59. sendo assim, para representar um periodo de 24h, basta informar o mesmo dia em ambos os campos.</p-->
+         <!--p class="alert">* Nesta versão do relatório, pode levar + de 10seg para gerar as informações. Este fato se dá, devido ao formato das alocações entregues pelo cliente, contudo buscamos melhorias.</p-->
+         <!--p class="alert">* Vale lembrar que parâmetros como "peso" e "ordenação" ainda estão fixos, no caso do peso: tais como no piloto, no caso da ordenação: da melhor média para a pior(macro), e do melhor aproveitamento para o pior(micro).</p-->
+
+    </div>
+
+    <div class="terminal">
+
+        <div class="table-header">
+
+            <div class="col" style="width:30%" [class.active]="order === 'motorista'" (click)="setOrder('motorista')"> MOTORISTA
+
+                <span [hidden]="reverse">▼</span>
+                <span [hidden]="!reverse">▲</span>
+
+            </div>
+
+            <div class="col" style="width:15%" [class.active]="order === 'cargaH'" (click)="setOrder('cargaH')">CARGA
+
+                <span [hidden]="reverse">▼</span>
+                <span [hidden]="!reverse">▲</span>
+
+            </div>
+
+            <div class="col" style="width:15%" [class.active]="order === 'aproveitamento'" (click)="setOrder('aproveitamento')">APROVEIT
+
+                <span [hidden]="reverse">▼</span>
+                <span [hidden]="!reverse">▲</span>
+
+            </div>
+
+            <div class="col" style="width:30%">VEÍCULO(S)</div>
+
+        </div>
+
+        <div class="content-terminal">
+
+            <div *ngFor="let item of (list | orderBy: order: reverse: 'case-insensitive') | filterList:{ motorista: searchText, carros: searchText }:false" class="table-content">
+
+                <div class="col colA motorista" style="width:30%">{{ item.motorista }}</div>
+                <div class="col colA" style="width:15%">{{ item.cargaH }}</div>
+                <div class="col colA" style="width:15%">{{ item.aproveitamento }}%</div>
+                <div class="col colA" style="width:30%">{{ item.carros }}</div>
+
+                <div class="sub-table-header">
+
+                    <div class="col" style="width:25%">EVENTO</div>
+                    <div class="col" style="width:15%">TEMPO</div>
+                    <div class="col" style="width:15%">OCORR</div>
+                    <div class="col" style="width:25%">PERCENTUAL DE ERRO</div>
+
+                </div>
+
+                <div *ngFor="let item2 of item.eventos" class="sub-table-content">
+
+                    <div class="col" style="width:25%">{{ item2.eventName }}</div>
+                    <div class="col" style="width:15%">{{ item2.totaltimeS }}</div>
+                    <div class="col" style="width:15%">{{ item2.totaloccurs }}</div>
+                    <div class="col" style="width:25%">{{ item2.erro }}%</div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '14px' }"></ngx-loading>
+<!--
+id="carrosida{{litem.numero_linha}}" [(ngModel)]="litem.carrosida" (change)="check($event,litem.numero_linha,carrosida)"
+-->

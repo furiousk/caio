@@ -1,0 +1,201 @@
+<div class="outroad">
+
+    <div class="content">
+
+        <div class="header" routerLink="/modulo">
+            <img src="assets/images/logo-its-cor.png" alt="ITS Service Intelligent Technology Solutions" >
+        </div>
+
+        <div class="barra-top"></div>
+
+        <div class="barra-top-menu">
+            <div class="row">
+                <div class="col-sm-6 cell1" routerLink="/modulo">
+                    <i class="fa fa-th fa-lg"></i>
+                </div>
+                <div class="col-sm-6 cell2" (click)="logoof()">
+                    <i class="fa fa-power-off fa-lg"></i>
+                </div>
+            </div>
+        </div>
+
+        <div class="row menus">
+
+            <div class="col-sm-4 f-btn" routerLink="/outroad" [class.active]="site=='rota'">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <i class="fa fa-exclamation fa-lg"></i>
+                    </div>
+                    <div class="col-sm-12">
+                        Fuga de rota
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-4 f-btn" routerLink="/pedagio" [class.active]="site=='pedagio'">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <i class="fa fa-ticket fa-lg"></i>
+                    </div>
+                    <div class="col-sm-12">
+                        Pedágio
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-4 f-btn" routerLink="/poi" [class.active]="site=='poi'">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <i class="fa fa-thumb-tack fa-lg"></i>
+                    </div>
+                    <div class="col-sm-12">
+                        POI
+                    </div>
+                </div>
+            </div>
+
+            <!--div class="col-sm-4 f-btn" routerLink="/telemetria-grafico" [class.active]="site=='graficos'">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <i class="fa fa-line-chart fa-lg"></i>
+                    </div>
+                    <div class="col-sm-12">
+                        Indicadores
+                    </div>
+                </div>
+            </div-->
+
+        </div>
+
+        <div class="row rotulo">
+            <div class="col-sm-1 icone">
+                <i class="fa fa-calendar-check-o fa-lg"></i>
+            </div>
+            <div class="col-sm-11">
+                Eventos fuga de rota
+            </div>
+        </div>
+
+        <div class="form-wrapper">
+
+          <div class="container-fluid">
+
+              <div class="fixed">
+
+                  <div class="row options">
+                      <div class="col-sm-6">
+                          <div class="row">
+                              <div class="col-sm-6">
+                                  <label> Data </label>
+                                  <input [(ngModel)]="dia" (blur)="onLoadEvents()" class="form-control filtro" type="date" placeholder="Data" aria-label="Buscar" >
+                              </div>
+                              <div class="col-sm-6">
+                                  <label> Linha </label>
+                                  <select class="custom-select" [(ngModel)]="linha" (change)="onLoadEvents()">
+                                      <option value="" selected>--selecione--</option>
+                                      <option value="{{ item._id }}" *ngFor="let item of linhas">{{ item.descricao }}</option>
+                                  </select>
+                              </div>
+                          </div>
+                      </div>
+                      <div class="col-sm-6"></div>
+                  </div>
+
+                  <div class="col-xs-12 col-sm-12 filtros">
+                      <tr>
+                          <th scope="col"></th>
+                          <th scope="col">
+                              <input [(ngModel)]="searchMot" class="form-control filtro" type="text" placeholder="Motorista" aria-label="Buscar" >
+                          </th>
+                          <th scope="col">
+                              <input [(ngModel)]="searchLine" class="form-control filtro" type="text" placeholder="Linha" aria-label="Buscar" >
+                          </th>
+                          <th scope="col">
+                              <input [(ngModel)]="searchCar" class="form-control filtro" type="text" placeholder="Veículo" aria-label="Buscar" >
+                          </th>
+                          <th scope="col">
+                              <input [(ngModel)]="searchDirc" class="form-control filtro" type="text" placeholder="Sentido" aria-label="Buscar" >
+                          </th>
+                          <th scope="col">
+                              <select class="custom-select" [(ngModel)]="searchStatus">
+                                  <option value="" selected>--status--</option>
+                                  <option value="true"> não visualizados </option>
+                                  <option value="false"> visualizados </option>
+                              </select>
+                          </th>
+                          <th scope="col"></th>
+                      </tr>
+                  </div>
+
+                  <table cellspacing="0" class="table table-bordered" style="width:100%">
+                      <thead class="headertable">
+                          <tr>
+                              <th scope="col" width="80" > Opçöes </th>
+
+                              <th scope="col" width="300" [class.active]="order === 'alocacao.nome_motorista'" (click)="setOrder('alocacao.nome_motorista')">Motorista
+                                  <span [hidden]="reverse">▼</span>
+                                  <span [hidden]="!reverse">▲</span>
+                              </th>
+
+                              <th scope="col" width="70" [class.active]="order === 'alocacao.numero_linha'" (click)="setOrder('alocacao.numero_linha')">Linha
+                                  <span [hidden]="reverse">▼</span>
+                                  <span [hidden]="!reverse">▲</span>
+
+
+                              <th scope="col" width="70" [class.active]="order === 'alocacao.numero_carro'" (click)="setOrder('alocacao.numero_carro')">Veículo
+                                  <span [hidden]="reverse">▼</span>
+                                  <span [hidden]="!reverse">▲</span>
+                              </th>
+
+                              <th scope="col" width="70" [class.active]="order === 'direction'" (click)="setOrder('direction')">Sentido
+                                  <span [hidden]="reverse">▼</span>
+                                  <span [hidden]="!reverse">▲</span>
+                              </th>
+
+                              <th scope="col" width="70" [class.active]="order === 'startdatetime'" (click)="setOrder('startdatetime')">Início
+                                  <span [hidden]="reverse">▼</span>
+                                  <span [hidden]="!reverse">▲</span>
+                              </th>
+
+                              <th scope="col" width="70" [class.active]="order === 'enddatetime'" (click)="setOrder('enddatetime')">Fim
+                                  <span [hidden]="reverse">▼</span>
+                                  <span [hidden]="!reverse">▲</span>
+                              </th>
+                          </tr>
+                      </thead>
+                  </table>
+              </div>
+
+              <table class="table table-bordered">
+
+                <tbody class="listagem">
+
+                    <tr class="databind" *ngFor="let item of (eventos | orderBy: order: reverse: 'case-insensitive')
+                    | filterList:{ nome_motorista:searchMot }:false
+                    | filterList:{ numero_linha:searchLine }:false
+                    | filterList:{ numero_carro:searchCar }:false
+                    | filterList:{ direction:searchDirc }:false
+                    | filterList:{ status:searchStatus }:false; let i = index" [ngClass]="{'lineLight': i%2==0, 'lineDark': i%2!==0 }">
+                        <td>
+                            <!--button class="btn btn-danger" (click)="openEventDel( item )"><i class="fa fa-trash"></i></button-->
+                            <button class="btn btn-primary" (click)="openEventMap( item )"><i class="fa fa-map"></i></button>
+                            <button class="btn btn-success" (click)="openEventExcel( item )"><i class="fa fa-file-excel-o"></i></button>
+                        </td>
+                        <td>{{ item.nome_motorista }}</td>
+                        <td>{{ item.numero_linha }}</td>
+                        <td>{{ item.numero_carro }}</td>
+                        <td>{{ item.direction }}</td>
+                        <td>{{ ajustDate(item.startdatetime) }}</td>
+                        <td>{{ ajustDate(item.enddatetime) }}</td>
+                    </tr>
+                    <tr [hidden]="eventos.length">
+                        <td colspan="8"> Não há evento no período! </td>
+                    </tr>
+
+              </tbody>
+            </table>
+          </div>
+        </div>
+    </div>
+    <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '14px' }"></ngx-loading>
+</div>

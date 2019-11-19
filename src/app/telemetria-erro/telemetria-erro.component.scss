@@ -1,0 +1,209 @@
+.erros{
+    .menus{
+        position: relative;
+        left: 50%;
+        transform: translate(-50%);
+        padding: 0;
+        margin: 0;
+        width: 55%;
+        margin-top: 130px;
+        padding-bottom: 30px;
+        //margin-bottom: 10px;
+        border-bottom: 1px solid #ccc;
+        div.f-btn{
+            text-align: center;
+            color: #666;
+            font-size: 12px;
+            cursor: pointer;
+            &:hover{
+                color: #f2842a!important;
+            }
+        }
+        .active{
+            color: #f2842a!important;
+        }
+    }
+    .fixed{
+        position: sticky!important;
+        top: 0!important;
+        z-index: 96;
+    }
+    .rotulo{
+        position: relative;
+        top: 30px;
+        left: 50%;
+        transform: translate(-50%);
+        padding: 0;
+        margin: 0;
+        width: 70%;
+        height: 60px;
+        line-height: 60px;
+        border-radius: 30px;
+        background-color: #ccc;
+        z-index: 97;
+        .icone{
+            text-align: right;
+        }
+    }
+    div.barra-top{
+        position: fixed;
+        top: 0;
+        background-color: #f2842a;
+        width: 100%;
+        height: 12px;
+        z-index: 95;
+        border-bottom: 1px #ccc solid;
+    }
+
+    div.barra-top-menu,div.barra-top-main-menu{
+        position: fixed;
+        top: 0;
+        left: 80%;
+        background-color: #f2842a;
+        color: #f6f6f6;
+        width: 130px;
+        height: 50px;
+        z-index: 95;
+        border-bottom: 1px #ccc solid;
+        border-bottom-left-radius: 20px;
+        border-bottom-right-radius: 20px;
+        text-align: center;
+        .row{
+            padding-top: 15px;
+            margin: 0!important;
+            .cell1{
+                //padding-left: 27px;
+                border-right: 1px solid #ccc;
+                &:hover{
+                    cursor: pointer;
+                    color: #fff;
+                    -webkit-text-stroke-width: 1px;
+                    -webkit-text-stroke-color: #000;
+                }
+            }
+            .cell2{
+                //padding-right: 27px;
+                &:hover{
+                    cursor: pointer;
+                    color: #fff;
+                    -webkit-text-stroke-width: 1px;
+                    -webkit-text-stroke-color: #000;
+                }
+            }
+        }
+    }
+    div.header{
+
+        background-color: #fff;//#f2842a;//#fff;//#f6f6f6;
+        width: 230px;
+        height: 200px;
+        position: fixed;
+        top: -145px;
+        left: 50%;
+        transform: translate(-50%);
+        z-index: 999;
+        border-radius: 7px;
+        box-shadow: 1px 1px 4px #f2842a;
+        cursor: pointer;
+        img{
+
+            position: absolute;
+            top: 130px;
+            left: 50%;
+            transform: translate(-50%);
+            width: 50%;
+        }
+    }
+    .options{
+        padding: 0;
+        margin: 0;
+        padding-top: 60px;
+        padding-left: 30px;
+        height: 150px;
+        background-color: #f6f6f6;
+        .btn-primary{
+            background-color: #f2842a;
+            border: 1px solid #f2842a;
+        }
+    }
+    .barra-descript{
+        position: relative;
+        top: 30px;
+        left: 20px;
+        width: 200px;
+    }
+    tbody.datalist{
+        tr{
+            font-size: 11px!important;
+            th{
+                text-align: center!important;
+                cursor: pointer;
+                span {
+                    visibility: hidden;
+                }
+                &.active {
+                    color: #fff;
+                    span {
+                        visibility: visible;
+                    }
+                }
+            }
+        }
+    }
+    thead.headertable{
+        padding: 0;
+        margin: 0;
+        overflow: hidden;
+        tr{
+            padding: 0;
+            margin: 0;
+            width: 100%!important;
+            th{
+                background-color: #f6f6f6;
+                color: #000;
+                border: 0;//1px solid #ccc;
+                font-size: 13px!important;
+                text-align: center!important;
+                //min-width: 190px;
+                //width: 230px;
+                cursor: pointer;
+                span {
+                    visibility: hidden;
+                }
+                &.active {
+                    color: #f2842a;
+                    span {
+                        visibility: visible;
+                    }
+                }
+            }
+        }
+    }
+    thead.headertablesub{
+        box-shadow: 2px 2px 4px #000;
+        tr.sub-row{
+            background-color: #fff;
+            font-size: 11px!important;
+            th,td{
+                //min-width: 92px;
+                cursor: pointer;
+                span {
+                    visibility: hidden;
+                }
+                &.active {
+                    color: #000;
+                    span {
+                        visibility: visible;
+                    }
+                }
+            }
+        }
+    }
+    div.btn{
+        border-radius: 50%;
+        border-color: #000;
+        background-color: #fff;
+        color: #2a2a2a;
+        box-shadow: 2px 2px 4px #000000;
+    }
+}

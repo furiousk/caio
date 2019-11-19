@@ -1,0 +1,136 @@
+* {
+    text-rendering: optimizeLegibility;
+}
+
+
+/* Fontes */
+
+body {}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+h7 {}
+
+p {}
+
+a {}
+
+h1 span,
+h2 span,
+h3 span,
+h4 span,
+h5 span,
+h6 span,
+h7 span {}
+
+
+/* LINKS */
+
+a,
+a:focus {
+    text-decoration: none;
+    -webkit-transition: color 150ms ease-out;
+    -moz-transition: color 150ms ease-out;
+    -o-transition: color 150ms ease-out;
+    transition: color 150ms ease-out;
+}
+
+a:hover {
+    text-decoration: none;
+    cursor: pointer;
+}
+
+a:active {
+    text-decoration: none;
+}
+
+
+.form-wrapper .periodo input {
+    max-width: 160px;
+    margin: 0 5px;
+}
+
+header .logo {
+    max-width: 200px;
+}
+
+header {
+    margin-bottom: 30px;
+}
+
+
+input::-webkit-calendar-picker-indicator {
+    display: none;
+}
+
+.form-wrapper label {
+    font-size: 80%;
+}
+
+.form-wrapper .card {
+    background-color: #f3f3f3;
+    padding: 15px;
+    margin-bottom: 20px;
+}
+
+.form-wrapper .parametro input,
+.form-wrapper .buscar input,
+.form-wrapper .periodo input {
+    margin: 0 5px;
+}
+
+.form-wrapper .parametro button {
+    margin-top: 18px;
+}
+
+.form-wrapper .alert {
+    font-size: 80%;
+}
+
+
+/* Extra small devices (portrait phones, less than 576px) */
+
+@media (max-width: 575px) {
+
+    .form-wrapper label {
+        font-size: 100%;
+        width: 100%;
+    }
+    .form-wrapper .parametro input,
+    .form-wrapper .buscar input,
+    .form-wrapper .periodo input {
+        max-width: 100%;
+        width: 100%;
+        margin: 5px 0;
+    }
+
+    .form-wrapper .search {
+        margin-top: 30px;
+    }
+
+    .form-wrapper h1 {
+        text-align: center;
+    }
+    .form-wrapper .flex-column.col-xs-12 {
+        width: 100%;
+    }
+}
+
+
+/* Small devices (landscape phones, less than 768px) */
+
+@media (max-width: 767px) {}
+
+
+/* Medium devices (tablets, less than 992px) */
+
+@media (max-width: 991px) {}
+
+
+/* Large devices (desktops, less than 1200px) */
+
+@media (max-width: 1199px) {}

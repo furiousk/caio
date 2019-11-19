@@ -1,0 +1,209 @@
+<div class="rastreio">
+
+    <div class="content">
+
+        <div class="header" routerLink="/modulo">
+            <img src="assets/images/logo-its-cor.png" alt="ITS Service Intelligent Technology Solutions" >
+        </div>
+
+        <div class="barra-top"></div>
+
+        <div class="barra-top-menu">
+            <div class="row">
+                <div class="col-sm-6 cell1" routerLink="/modulo">
+                    <i class="fa fa-th fa-lg"></i>
+                </div>
+                <div class="col-sm-6 cell2" (click)="logoof()">
+                    <i class="fa fa-power-off fa-lg"></i>
+                </div>
+            </div>
+        </div>
+
+        <div class="barra-top-main-menu">
+            <div class="row">
+                <div class="col-xs-12 col-sm-6 cell1" (click)="open('vopen')" [class.actived]="vopen">
+                    <i class="fa fa-bus fa-lg"></i>
+                </div>
+                <div class="col-xs-12 col-sm-6 cell2" (click)="open('lopen')" [class.actived]="lopen">
+                    <i class="fa fa-random fa-lg"></i>
+                </div>
+            </div>
+        </div>
+
+        <div class="main-vehicle" [style.width.px]="vopen">
+
+            <div class="topo">
+                <label>VEÍCULOS</label>
+            </div>
+
+            <div class="title">
+                selecione o período
+            </div>
+
+            <div class="container">
+
+                <div class="row">
+                    <div class="col-sm-6 ceil">
+
+                        <label>Data início</label>
+                        <input class="form-control d-block ceil-left" type="date" [(ngModel)]="parDateIni">
+
+                    </div>
+                    <div class="col-sm-6 ceil">
+
+                        <label>Hora início</label>
+                        <input class="form-control d-block ceil-right" type="time" [(ngModel)]="parHoraIni">
+
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-6 ceil">
+
+                        <label>Data fim</label>
+                        <input class="form-control d-block ceil-left" type="date" [(ngModel)]="parDateFim">
+
+                    </div>
+                    <div class="col-sm-6 ceil">
+
+                        <label>Hora fim</label>
+                        <input class="form-control d-block ceil-right" type="time" [(ngModel)]="parHoraFim">
+
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="title">
+                selecione o(s) veículo(s)
+            </div>
+
+            <div class="content-vehicle">
+
+                <div class="search-content">
+                    <i class="fa fa-search"></i><!--span class="fa fa-th" (click)="vselectall()"></span-->
+                    <input type="text" [(ngModel)]="findVeiculo" placeholder="selecione um veículos">
+                    <div class="lists">
+                        <div class="item-lists" *ngFor="let v of listv | filter:{ prefixo: findVeiculo, placa: findVeiculo }:false" (click)="rselect( v )">
+                            <i class="fa fa-bus"></i> {{ v?.placa }}  -  {{ v?.prefixo }}
+                        </div>
+                    </div>
+                </div>
+
+                <div class="search-content vcontainer">
+                    <div class="vgrid">
+                        <div class="vitem" *ngFor="let vitem of rveiculos" >
+                            <i class="fa fa-bus"></i>
+                            <p>{{ maxLength( vitem?.placa, 7 ) }}</p>
+                            <div class="ibtn" (click)="rremove( vitem.mixID, 'veiculo' )">
+                                <i class="fa fa-close"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="footer row" [hidden]="rveiculos.length!=1">
+                <div class="col-sm-6 send" (click)="rastreamento('veiculo')">
+                    consultar
+                </div>
+                <div class="col-sm-6 xls" (click)="imprimir()">
+                    excel
+                </div>
+            </div>
+
+            <div class="footer send" (click)="rastreamento('veiculo')" [hidden]="rveiculos.length==1">
+                consultar
+            </div>
+
+        </div>
+
+        <div class="main-line" [style.width.px]="lopen">
+
+            <div class="topo">
+                <label>LINHAS</label>
+            </div>
+
+            <div class="title">
+                selecione o período
+            </div>
+
+            <div class="container">
+
+                <div class="row">
+                    <div class="col-sm-6 ceil">
+
+                        <label>Data início</label>
+                        <input class="form-control d-block ceil-left" type="date" [(ngModel)]="parDateIni">
+
+                    </div>
+                    <div class="col-sm-6 ceil">
+
+                        <label>Hora início</label>
+                        <input class="form-control d-block ceil-right" type="time" [(ngModel)]="parHoraIni">
+
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-6 ceil">
+
+                        <label>Data fim</label>
+                        <input class="form-control d-block ceil-left" type="date" [(ngModel)]="parDateFim">
+
+                    </div>
+                    <div class="col-sm-6 ceil">
+
+                        <label>Hora fim</label>
+                        <input class="form-control d-block ceil-right" type="time" [(ngModel)]="parHoraFim">
+
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="title">
+                selecione a(s) linha(s)
+            </div>
+
+            <div class="content-line" >
+
+                <div class="search-content">
+                    <i class="fa fa-search"></i><!--span class="fa fa-th" (click)="vselectall()"></span-->
+                    <input type="text" placeholder="selecione uma linha" [(ngModel)]="findLinha">
+                    <div class="lists">
+                        <div class="item-lists" *ngFor="let v of listl | filter:{ prefixo: findLinha, descricao: findLinha }:false" (click)="rlselect(v)">
+                            <i class="fa fa-random"></i> {{ v?.descricao }}
+                        </div>
+                    </div>
+                </div>
+
+                <div class="search-content vcontainer">
+                    <div class="vgrid">
+                        <div class="vitem" *ngFor="let litem of rlinhas" >
+                            <i class="fa fa-random"></i>
+                            <p >{{ maxLength( litem?.descricao, 30 ) }}</p>
+                            <div class="ibtn" (click)="rremove( litem.numero_linha, 'linha' )">
+                                <i class="fa fa-close"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="footer" (click)="rastreamento('linha')">
+                consultar
+            </div>
+        </div>
+
+        <div id="map"></div>
+
+        <div class="slidecontainer">
+            <input type="range"
+                [min]="_play?.new_data_control?.min"
+                [max]="_play?.new_data_control?.max"
+                [value]="getTime()"
+                [step]="_play?.new_data_control?.step" (change)="slider($event)" class="slider" id="myRange">
+        </div>
+
+    </div>
+    <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '14px' }"></ngx-loading>
+</div>

@@ -1,0 +1,250 @@
+@import '~bootstrap/dist/css/bootstrap.min.css';
+@import '~font-awesome/css/font-awesome.min.css';
+.backdrop{
+    position: fixed!important;
+    border: 0!important;
+}
+.modal-footer{
+    margin-top: 10px;
+}
+.peso{
+    height: 65vh;
+    max-height: 600px!important;
+    overflow-y: auto;
+}
+.space{
+    height: 50px;
+}
+* {
+    text-rendering: optimizeLegibility;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+     box-sizing: border-box;
+}
+a:active, a:focus, div:active, div:focus, button:active, button:focus, span:active, span:focus {
+    outline: 0;
+    border: none;
+    -moz-outline-style: none
+}
+.lineLight{
+    background-color: #fff;
+}
+.lineDark{
+    background-color: #f6f6f6;
+}
+/* Fontes */
+
+body {}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+h7 {}
+
+p {}
+
+a {}
+
+h1 span,
+h2 span,
+h3 span,
+h4 span,
+h5 span,
+h6 span,
+h7 span {}
+
+
+/* LINKS */
+
+a,
+a:focus {
+    text-decoration: none;
+    -webkit-transition: color 150ms ease-out;
+    -moz-transition: color 150ms ease-out;
+    -o-transition: color 150ms ease-out;
+    transition: color 150ms ease-out;
+}
+
+a:hover {
+    text-decoration: none;
+    cursor: pointer;
+}
+
+a:active {
+    text-decoration: none;
+}
+
+.form-wrapper .periodo input {
+    max-width: 160px;
+    margin: 0 5px;
+}
+
+header .logo {
+    max-width: 100px;
+}
+
+header { /*margin-bottom: 30px;*/ }
+
+input::-webkit-calendar-picker-indicator {
+    display: none;
+}
+
+.form-wrapper label {
+    font-size: 80%;
+}
+
+.form-wrapper .card {
+    background-color: #f3f3f3;
+    padding: 15px;
+    margin-bottom: 20px;
+}
+
+.form-wrapper .parametro input,
+.form-wrapper .buscar input,
+.form-wrapper .periodo input {
+    margin: 0 5px;
+}
+
+.form-wrapper .parametro button {
+    margin-top: 18px;
+}
+
+.form-wrapper .alert {
+    font-size: 80%;
+}
+
+textarea:focus, input:focus{
+    outline: none;
+}
+span.created-by{
+    position: absolute;
+    left: 5px;
+    bottom: 3px;
+    font-size: 10px;
+    z-index: 997;
+}
+span.created-by a{
+    color: #0078A8;
+    /*color: inherit; /* blue colors for links too */
+    text-decoration: inherit; /* no underline */
+}
+
+.leaflet-popup-content-wrapper, .leaflet-popup-tip{
+
+    width: 600px!important;
+    background: linear-gradient(to right, #f9ecdb, #e3c89b)!important;
+    color: #000!important;
+    font-weight: bold!important;
+    box-shadow: 0 3px 14px rgba(0,0,0,0.4);
+}
+.leaflet-popup-tip {
+
+    background: #000!important;
+}
+.leaflet-container a.leaflet-popup-close-button{
+
+    color: #000!important;
+}
+.leaflet-popup-content{
+
+    width: 100%!important;
+}
+.leaflet-marker-iconlabel{
+
+    /*linear-gradient: linear-gradient(to right, #3e3e3e, #5e5e5e);*/
+    background: linear-gradient(to right, #3e3e3e, #5e5e5e)!important;
+    color: #fff!important;
+    font-size: 14px!important;
+    font-weight: bold!important;
+}
+.leaflet-control-layers.leaflet-control-layers-expanded.leaflet-control{
+    position: relative!important;
+    /*float: right!important;*/
+    background-color: #302f25!important;
+    color: #fff!important;
+    pointer-events: visible;
+}
+.leaflet-control-layers > .playControl > button{
+    color: #000!important;
+}
+input.slider{
+    background-color: #fff!important;
+    color: #fff!important;
+}
+.ballon-vehicle{
+
+    width: 100%;
+    padding-right: 20px;
+    padding-bottom: 20px;
+}
+.ballon-vehicle > .ballon-header{
+
+    font-size: 16px;
+    font-weight: bold;
+    /*border-bottom: 1px solid #fff;*/
+    margin-bottom: 10px;
+}
+.truncate {
+
+    width: 250px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.breadcrumb{
+    padding: 0!important;
+    padding-left: 45px!important;
+}
+.breadcrumb a{
+    color: #000;
+}
+.progress{
+    margin-top: 6px!important;
+}
+.progress-bar{
+    color: #000!important;
+}
+/* Extra small devices (portrait phones, less than 576px) */
+
+@media (max-width: 575px) {
+
+    .form-wrapper label {
+        font-size: 100%;
+        width: 100%;
+    }
+    .form-wrapper .parametro input,
+    .form-wrapper .buscar input,
+    .form-wrapper .periodo input {
+        max-width: 100%;
+        width: 100%;
+        margin: 5px 0;
+    }
+
+    .form-wrapper .search {
+        margin-top: 30px;
+    }
+
+    .form-wrapper h1 {
+        text-align: center;
+    }
+    .form-wrapper .flex-column.col-xs-12 {
+        width: 100%;
+    }
+}
+
+/* Small devices (landscape phones, less than 768px) */
+
+@media (max-width: 767px) {}
+
+
+/* Medium devices (tablets, less than 992px) */
+
+@media (max-width: 991px) {}
+
+
+/* Large devices (desktops, less than 1200px) */
+
+@media (max-width: 1199px) {}

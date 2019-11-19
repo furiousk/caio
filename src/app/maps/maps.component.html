@@ -1,0 +1,254 @@
+<div class="maps">
+
+	<div class="content">
+		<header>
+			<div class="header" routerLink="/modulo">
+				<img src="assets/images/logo-its-cor.png" alt="ITS Service Intelligent Technology Solutions" >
+			</div>
+	
+			<div class="barra-top"></div>
+	
+			<div class="barra-top-menu">
+				<div class="row">
+					<div class="col-sm-6 cell1" routerLink="/modulo">
+						<i class="fa fa-th fa-lg"></i>
+					</div>
+					<div class="col-sm-6 cell2" (click)="logoof()">
+						<i class="fa fa-power-off fa-lg"></i>
+					</div>
+				</div>
+			</div>
+		</header>
+		<main>
+
+
+			<div class="barra-top-main-menu">
+				<div class="row">
+					<div class="col-xs-12 col-sm-4 cell1" (click)="open('vopen')" [class.actived]="vopen">
+						<i class="fa fa-bus fa-lg"></i>
+					</div>
+					<div class="col-xs-12 col-sm-4 cell1" (click)="open('lopen')" [class.actived]="lopen">
+						<i class="fa fa-random fa-lg"></i>
+					</div>
+					<div class="col-xs-12 col-sm-4 cell2" (click)="open('copen')" [class.actived]="copen">
+						<i class="fa fa-exchange fa-lg"></i>
+					</div>
+				</div>
+			</div>
+
+			<!--div class="main-menu" [style.width.px]="mopen">
+
+				<div class="content-menu" [hidden]="show(mopen)">
+
+					<p (click)="setMenu('smopen')"> Telemetria </p>
+
+					<div class="content-sub-menu" [style.height.px]="smopen" [hidden]="smopen==0">
+						<p (click)="goTelemErro()" > Violações de condução </p>
+						<p (click)="goTelemRank()" > Relatório de Aproveitamento </p>
+						<p (click)="goTelemGraf()" > Indicadores de Aproveitamento </p>
+					</div>
+
+					<p (click)="setMenu('emopen')"> Evento </p>
+
+					<div class="content-sub-menu" [style.height.px]="emopen" [hidden]="emopen==0">
+						<p (click)="goEventOutRoad()" > Fuga de rota </p>
+					</div>
+
+					<p > Geofences/Cercas </p>
+					<p > Alocação </p>
+					<p > Escala </p>
+					<p > Planejamento </p>
+					<p > Programação </p>
+					<p > Veículo </p>
+					<p > Motorista </p>
+					<p (click)="logoof()"> Sair </p>
+
+				</div>
+			</div-->
+
+			<div class="main-vehicle" [style.width.px]="vopen">
+
+				<div class="topo">
+					<label>VEÍCULOS</label>
+				</div>
+
+				<div class="container">
+					<div class="row">
+						<div class="col-sm-6 btn-menu" title="Selecionar todos">
+
+							<div class="form-check form-check-inline" >
+								<input class="form-check-input" type="checkbox" id="inlineCheckbox1" (change)="vselectall($event)" [(ngModel)]="allVehicles" [disabled]="false">
+								<label class="form-check-label" for="inlineCheckbox1"> Ver todos </label>
+							</div>
+
+						</div>
+						<div class="col-sm-6 btn-menu" (click)="erase()" title="Limpar rastreio">
+							<i class="fa fa-eraser"></i> Apagar
+						</div>
+					</div>
+				</div>
+
+				<div class="content-vehicle" [hidden]="show(vopen)">
+
+					<div class="search-content">
+
+						<i class="fa fa-search"></i><!--span class="fa fa-th" (click)="vselectall()"></span-->
+						<input type="text" [(ngModel)]="findv" placeholder="selecione um veículo">
+
+						<div class="lists">
+							<div class="item-lists" *ngFor="let v of listv | filter:{ placa: findv, descricao: findv }:false" (click)="vselect(v)">
+								<i class="fa fa-bus"></i> {{ v.placa }}  -  {{ v.prefixo }}
+							</div>
+						</div>
+
+						<div class="vgrid">
+							<div class="vitem" *ngFor="let vitem of aveiculos" (click)="showDisplay(vitem)">
+								<i class="fa fa-bus"></i>
+								<p>{{ maxLength( vitem.placa, 7) }}</p>
+								<div class="ibtn" (click)="remove(vitem.mixID,'veiculo')">
+									<i class="fa fa-close"></i>
+								</div>
+							</div>
+						</div>
+
+					</div>
+				</div>
+			</div>
+
+			<div class="main-line" [style.width.px]="lopen">
+
+				<div class="topo">
+					<label>LINHAS</label>
+				</div>
+
+				<div class="container">
+					<div class="row">
+						<div class="col-sm-6 btn-menu" title="Selecionar todos">
+
+							<div class="form-check form-check-inline" >
+								<input class="form-check-input" type="checkbox" id="inlineCheckbox2" (change)="lselectall($event)" [(ngModel)]="allLines" [disabled]="false">
+								<label class="form-check-label" for="inlineCheckbox2"> Todos </label>
+							</div>
+
+						</div>
+						<div class="col-sm-6 btn-menu" (click)="erase()" title="Limpar rastreio">
+							<i class="fa fa-eraser"></i> Apagar
+						</div>
+					</div>
+				</div>
+
+				<div class="content-line" [hidden]="show(lopen)">
+					<div class="search-content">
+
+						<i class="fa fa-search"></i><!--span class="fa fa-th" (click)="vselectall()"></span-->
+						<input type="text" [(ngModel)]="findl" placeholder="selecione uma linha">
+
+						<div class="lists">
+							<div class="item-lists" *ngFor="let l of listl | filter:{ prefixo: findl, descricao: findl }:false" (click)="lselect(l)">
+								<i class="fa fa-random"></i> {{ l.descricao }}
+							</div>
+						</div>
+
+						<div class="vgrid" >
+							<div class="litem" *ngFor="let litem of alinhas" [class.actived]="wopen[litem.numero_linha]">
+								<i class="fa fa-random"></i>
+								<p (click)="openView(litem)">{{ maxLength( litem.descricao, 30 ) }}</p>
+								<div class="ibtn" (click)="remove(litem.numero_linha, 'linha')">
+									<i class="fa fa-close"></i>
+								</div>
+								<div class="control" >
+
+									<p>Veículos na linha: {{ linhas[litem.numero_linha]?.veiculos?.length }}</p>
+
+									<div class="container">
+
+										<label>
+											<input class="option-input checkbox" type="checkbox" id="carrosida{{litem.numero_linha}}" [(ngModel)]="litem.carrosida" (change)="check($event,litem.numero_linha,carrosida)" />
+											Veículos IDA
+										</label>
+
+										<label>
+											<input class="option-input checkbox" type="checkbox" id="carrosvolta{{litem.numero_linha}}" [(ngModel)]="litem.carrosvolta" (change)="check($event,litem.numero_linha,carrosvolta)" />
+											Veículos VOLTA
+										</label>
+
+										<label>
+											<input class="option-input checkbox" type="checkbox" id="foraplan{{litem.numero_linha}}" [(ngModel)]="litem.foraplan" (change)="check($event,litem.numero_linha,foraplan)" />
+											Veículos(no trip)
+										</label>
+
+										<label>
+											<input class="option-input checkbox" type="checkbox" id="sentidoida{{litem.numero_linha}}" [(ngModel)]="litem.sentidoida" (change)="check($event,litem.numero_linha,sentidoida)" />
+											Roteiro IDA
+										</label>
+
+										<label>
+											<input class="option-input checkbox" type="checkbox" id="sentidovolta{{litem.numero_linha}}" [(ngModel)]="litem.sentidovolta" (change)="check($event,litem.numero_linha,sentidovolta)" />
+											Roteiro VOLTA
+										</label>
+
+										<label>
+											<input class="option-input checkbox" type="checkbox" id="terminalida{{litem.numero_linha}}" [(ngModel)]="litem.terminalida" (change)="check($event,litem.numero_linha,terminalida)" />
+											Terminal IDA
+										</label>
+
+										<label>
+											<input class="option-input checkbox" type="checkbox" id="terminalvolta{{litem.numero_linha}}" [(ngModel)]="litem.terminalvolta" (change)="check($event,litem.numero_linha,terminalvolta)" />
+											Terminal VOLTA
+										</label>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="main-sinotico" [style.width.px]="copen">
+
+				<div class="topo">
+					<label>SÍNOTICO</label>
+				</div>
+
+				<div class="container">
+					<div class="row">
+						<div class="col-sm-12 btn-menu" (click)="erase()" title="Limpar rastreio">
+							<i class="fa fa-eraser"></i> Apagar
+						</div>
+					</div>
+				</div>
+
+				<div class="content-line" >
+
+					<div class="search-content">
+
+						<i class="fa fa-search"></i><!--span class="fa fa-th" (click)="vselectall()"></span-->
+						<input type="text" [(ngModel)]="findl" placeholder="selecione uma linha">
+
+						<div class="lists">
+							<div class="item-lists" *ngFor="let l of listl | filter:{ prefixo: findl, descricao: findl }:false" (click)="sinotico(l)">
+								<i class="fa fa-random"></i> {{ l.descricao }}
+							</div>
+						</div>
+
+						<div class="vgrid" >
+
+							<div class="litem" *ngFor="let sitem of slinhas" [class.actived]="wopen[sitem.numero_linha]" (click)="_toggle()">
+								<i class="fa fa-random"></i>
+								<p >{{ maxLength( sitem.descricao, 30 ) }}</p>
+								<div class="ibtn" (click)="remove(sitem.numero_linha, 'sinotico')">
+									<i class="fa fa-close"></i>
+								</div>
+							</div>
+
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div id="map"></div>
+		</main>
+	</div>
+	<span class="created-by">Copyright © Iconup 2017-{{ currentYear }}. All rights reserved. Version 2.0.0 </span>
+	<info-sinotic-modal *ngIf="!_hidden" [data]="__sinotico"></info-sinotic-modal>
+</div>
